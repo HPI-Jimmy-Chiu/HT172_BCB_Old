@@ -1,0 +1,38 @@
+BEGIN:VCALENDAR
+PRODID:-//Microsoft Corporation//Outlook 10.0 MIMEDIR//EN
+VERSION:2.0
+METHOD:REQUEST
+BEGIN:VTIMEZONE
+TZID:Asia/Taipei
+LAST-MODIFIED:20221105T024526Z
+TZURL:https://www.tzurl.org/zoneinfo-outlook/Asia/Taipei
+X-LIC-LOCATION:Asia/Taipei
+BEGIN:STANDARD
+TZNAME:CST
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20241007T004629Z
+ATTENDEE;CN="Webex03 ASECL";ROLE=REQ-PARTICIPANT;RSVP=FALSE:MAILTO:asecl_webex03@aseglobal.com
+ORGANIZER;CN="Cisco Webex":MAILTO:messenger@webex.com
+DTSTART;TZID=Asia/Taipei:20241015T150000
+DTEND;TZID=Asia/Taipei:20241015T160000
+LOCATION:https://asecl.webex.com/asecl-en/j.php?MTID=me89063d39c87d2d899fd502d0c10ed61
+TRANSP:OPAQUE
+SEQUENCE:1728261989
+UID:11038367-bf9c-42a5-a735-3182679c4743
+DESCRIPTION:\n\n\nJOIN WEBEX MEETING\nhttps://asecl.webex.com/asecl-en/j.php?MTID=me89063d39c87d2d899fd502d0c10ed61\nMeeting number (access code): 2516 659 6884\n\n\nMeeting password: w3YQ8bk5MeJ\n\n\n\nJOIN BY PHONE\nUse VoIP only\n\n\nJOIN FROM A VIDEO SYSTEM OR APPLICATION\nDial sip:25166596884@asecl.webex.com\nYou can also dial 210.4.202.4 and enter your meeting number.\n\n\n\nIf you are a host, click here and login site to view host information:\nhttps://asecl.webex.com/webappng/sites/asecl/meeting/info/483873767f8a4827bcf754633ec2ba7d\n\n\n\nCan't join the meeting? Contact support here:\nhttps://asecl.webex.com/asecl-en/mc\n\n\nIMPORTANT NOTICE: Please note that this Webex service allows audio and other information sent during the session to be recorded, which may be discoverable in a legal matter. You should inform all meeting attendees prior to recording if you intend to record the meeting.\n
+X-ALT-DESC;FMTTYPE=text/html:<style type="text/css">\ntable {\n	border-collapse: separate; width =100%;    border: 0;    border-spacing: 0;}\n\ntr {\n	line-height: 18px;}\n\na, td {\n	font-size: 14px;	font-family: Arial;	color: #333;	word-wrap: break-word;	word-break: normal;	padding: 0;}\n\n.title {\n	font-size: 28px;}\n\n.image {\n	width: auto;	max-width: auto;}\n\n.footer {\n	width: 604px;}\n\n.main {\n\n}@media screen and (max-device-width: 800px) {\n	.title {\n		font-size: 22px !important;	}\n	.image {\n		width: auto !important;		max-width: 100% !important;	}\n	.footer {\n		width: 100% !important;		max-width: 604px !important\n	}\n	.main {\n		width: 100% !important;		max-width: 604px !important\n	}\n}\n</style>\n\n<table bgcolor="#FFFFFF" style="padding: 0; margin: 0; border: 0; width: 100%;direction:ltr;" align="left">\n	<tr style="height: 28px"><td>&nbsp;</td></tr>\n	<tr>\n		<td align="left" style="padding: 0 20px; margin: 0">\n			<!--<table bgcolor="#FFFFFF" style="border: 0px; width: 100%; padding-left: 50px; padding-right: 50px;" align="left" class="main">\n				<tr>\n					<td align="center" valign="top" >&nbsp;					</td>\n				</tr>\n			</table>-->\n\n\n\n			<table>\n				<tr>\n					<td>\n						<FONT SIZE="4" COLOR="#666666" FACE="arial">When it's time, join the Webex meeting here.</FONT>\n					</td>\n				</tr>\n		</table>\n\n        <table>\n        	<tr style="line-height: 20px;"><td style="height:20px">&nbsp;</td></tr>\n			<tr>\n				<td style="width:auto!important; ">\n					<table border="0" cellpadding="0" cellspacing="0" style="width:auto;width:auto!important;background-color:#00823B; border:0px solid #00823B; border-radius:25px; min-width:160px!important;">\n						<tr>\n							<td align="center" style="padding:10px 36px;"><a href="https://asecl.webex.com/asecl-en/j.php?MTID=me89063d39c87d2d899fd502d0c10ed61" style="color:#FFFFFF; font-size:20px; text-decoration:none;">Join meeting</a></td>\n						</tr>\n					</table>\n				</td>\n			</tr>\n		</table>\n		<table>\n			<tr style="line-height: 20px;"><td style="height:20px">&nbsp;</td></tr>\n			<tr>\n				<td>\n						<FONT SIZE="3" COLOR="#666666" FACE="arial">More ways to join:</FONT>\n				</td>\n        	</tr>\n            <tr style="line-height: 10px;"><td style="height: 10px;">&nbsp;</td></tr>\n        	<tr>\n				<td>\n						<FONT SIZE="3" COLOR="#666666" FACE="arial">Join from the meeting link</FONT>\n				</td>\n        	</tr>\n        	<tr>\n				<td>\n						<FONT SIZE="2" COLOR="#666666" FACE="arial"><a href='https://asecl.webex.com/asecl-en/j.php?MTID=me89063d39c87d2d899fd502d0c10ed61' style='color:#005E7D;  text-decoration:none; font-family: Arial;font-size: 14px;line-height: 24px;'>https://asecl.webex.com/asecl-en/j.php?MTID=me89063d39c87d2d899fd502d0c10ed61</a></FONT>\n				</td>\n        	</tr>\n        	<tr style="line-height: 20px;"><td style="height:20px">&nbsp;</td></tr>\n			<tr>\n				<td>\n						<FONT SIZE="3" COLOR="#666666" FACE="arial">Join by meeting number</FONT>\n				</td>\n        	</tr>\n			<tr>\n				<td>\n					<FONT SIZE="2" COLOR="#666666" FACE="arial"><span dir="ltr">Meeting number (access code):</span> <span dir="auto">2516 659 6884</span></FONT>\n				</td>\n			</tr>\n		</table>\n		<table><tr><td><FONT SIZE="2" COLOR="#666666" FACE="arial">Meeting password:</FONT></td><td><FONT SIZE="2"  COLOR="#666666" FACE="arial">w3YQ8bk5MeJ</FONT></td></tr></table>\n\n <FONT size="2" COLOR="#FF0000" style="font-family: Arial;"></FONT>\n<FONT SIZE="1" FACE="ARIAL">&nbsp;<BR>&nbsp;<BR></FONT>\n\n<FONT SIZE="4" FACE="ARIAL"><FONT SIZE="3" COLOR="#666666" FACE="arial">Join by phone</FONT> &nbsp; <BR><FONT SIZE="2" COLOR="#666666" FACE="arial">Use VoIP only</FONT>&nbsp; <BR><BR>\n\n<table><tr style="line-height: 20px;"><td style="height:20px">&nbsp;</td></tr></table>\n\n<FONT SIZE="4" FACE="ARIAL"><FONT SIZE="3" COLOR="#666666" FACE="arial">Join from a video system or application</FONT><BR><FONT SIZE="2" COLOR="#666666" FACE="arial" dir="ltr">Dial</FONT> <a href="sip:25166596884@asecl.webex.com"><FONT SIZE="2" COLOR="#005E7D" FACE="arial" dir="auto">25166596884@asecl.webex.com</FONT></a>&nbsp; <BR><FONT SIZE="2" COLOR="#666666" FACE="arial">You can also dial 210.4.202.4 and enter your meeting number.</FONT> &nbsp; <BR></FONT>&nbsp; <BR>\n\n	<table><tr style="line-height: 20px"><td style="height:20px">&nbsp;</td></tr></table>\n	<table><tr style="margin:0px"><td style="color: #333333; font-family: Arial; font-size: 14px; line-height: 24px;">If you are a host, <a href="https://asecl.webex.com/webappng/sites/asecl/meeting/info/483873767f8a4827bcf754633ec2ba7d" style="text-decoration:none;color:#005E7D">click here</a> and login site to view host information.</td></tr></table>\n\n			<table style="width: 100%;" align="left" class="main">\n                <tr style="height: 20px"><td>&nbsp;</td></tr>\n				<tr>\n					<td style="height: 24px; color: #000000; font-family:Arial; font-size: 14px; line-height: 24px;">Need help? Go to <a href="https://help.webex.com" style="color:#005E7D; text-decoration:none;">https://help.webex.com</a>\n					</td>\n				</tr>\n                <tr style="height: 44px"><td>&nbsp;</td></tr>\n			</table>\n		</td>\n	</tr>\n</table>\n
+SUMMARY:Supplier Technical Seminar
+PRIORITY:5
+CLASS:PUBLIC
+BEGIN:VALARM
+TRIGGER:-PT5M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR

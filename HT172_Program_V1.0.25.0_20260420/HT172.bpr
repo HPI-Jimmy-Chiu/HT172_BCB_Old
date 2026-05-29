@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\EXE\HT172.exe"/>
+    <OBJFILES value="..\Obj\HT172.obj ..\Obj\handlerlog.obj ..\Obj\myTimer.obj ..\Obj\main.obj 
+      ..\Obj\database.obj ..\Obj\cinitial.obj ..\Obj\mycylin.obj 
+      ..\Obj\cmydef.obj ..\Obj\mykitsuck.obj ..\Obj\mymessbox.obj 
+      ..\Obj\mysensor.obj ..\Obj\myswitch.obj ..\Obj\mytray.obj ..\Obj\note.obj 
+      ..\Obj\cprod.obj ..\Obj\cpublic.obj ..\Obj\csystem.obj ..\Obj\uhome.obj 
+      ..\Obj\uruncontrol.obj ..\Obj\iosetview.obj ..\Obj\setup.obj 
+      ..\Obj\data.obj ..\Obj\maintenance.obj ..\Obj\Password.obj 
+      ..\Obj\uteach.obj ..\Obj\ckernel.obj ..\Obj\uMotorTest.obj 
+      ..\Obj\uOffset.obj ..\Obj\uspeed.obj ..\Obj\LevelSetup.obj 
+      ..\Obj\systools.obj ..\Obj\deviceinfo.obj ..\Obj\myQwertyKeyBoard.obj 
+      ..\Obj\common.obj ..\Obj\myio.obj ..\Obj\myio_MN200.obj ..\Obj\HTMotor.obj 
+      ..\Obj\mymotor.obj ..\Obj\mySMCmotor.obj ..\Obj\uHGemEquipment.obj 
+      ..\Obj\UsecegemMainFrom.obj ..\Obj\uHGemClass.obj ..\Obj\uTrayEditForm.obj 
+      ..\Obj\uHGemHT172.obj ..\Obj\aLoader.obj ..\Obj\aSortArm.obj 
+      ..\Obj\aTrayArm.obj ..\Obj\aMagArm.obj ..\Obj\MyStringList.obj 
+      ..\Obj\aMagazine.obj ..\Obj\MyBinDisp.obj ..\Obj\Barcode.obj 
+      ..\Obj\ModbusTCPClient.obj ..\Obj\MyPLC_IO_Modbus.obj ..\Obj\ComPort.obj 
+      ..\Obj\uPadInterface.obj ..\Obj\TrayStepMotor.obj ..\Obj\TextProcess.obj 
+      ..\Obj\aseTest.obj ..\Obj\myMN200motor.obj ..\Obj\DecodeXML.obj 
+      ..\Obj\FTPClient.obj ..\Obj\TasmInfo.obj ..\Obj\uTimeTool.obj 
+      ..\Obj\CosFunction.obj ..\Obj\cJSON.obj ..\Obj\Auto172.obj 
+      ..\Obj\automation.obj ..\Obj\FileInfo.obj ..\Obj\cCCDCtrl.obj 
+      ..\Obj\FSMRunner.obj ..\Obj\TLoaderInterface.obj ..\Obj\LoaderMainStep.obj 
+      ..\Obj\LoaderMainTable.obj ..\Obj\LoadNewTrayStep.obj 
+      ..\Obj\LoadNewTrayTable.obj ..\Obj\LoadNewTrayExec.obj 
+      ..\Obj\TrayToWorkStep.obj ..\Obj\TrayToWorkExec.obj 
+      ..\Obj\TrayToTransferStep.obj ..\Obj\TrayToTransferExec.obj 
+      ..\Obj\TrayToWorkTable.obj ..\Obj\TrayToTransferTable.obj"/>
+    <RESFILES value="HT172.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) main.dfm database.dfm mymessbox.dfm note.dfm uhome.dfm 
+      iosetview.dfm setup.dfm data.dfm maintenance.dfm Password.dfm uteach.dfm 
+      uMotorTest.dfm uOffset.dfm uspeed.dfm LevelSetup.dfm systools.dfm 
+      myQwertyKeyBoard.dfm SecsGem\uHGemEquipment.dfm 
+      SecsGem\UsecegemMainFrom.dfm uTrayEditForm.dfm MyBinDisp.dfm Barcode.dfm 
+      ComPort.dfm uPadInterface.dfm TrayStepMotor.dfm aseTest.dfm 
+      HT172_Module\DecodeXML.dfm FTPClient.dfm Automation\automation.dfm"/>
+    <LIBFILES value="Lib\CSMC.lib Lib\MN200BCB.lib"/>
+    <LIBRARIES value="inet.lib xmlrtl.lib dclusr60.lib nmfast.lib tee.lib bcbsmp.lib vclx.lib 
+      bdertl.lib vcldb.lib dbrtl.lib vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib dbrtl.lib vcldb.lib bdertl.lib vclx.lib bcbsmp.lib tee.lib 
+      nmfast.lib dclusr60.lib xmlrtl.lib inet.lib"/>
+    <PACKAGES value="rtl.bpi vcl.bpi vclx.bpi vcljpg.bpi dbrtl.bpi vcldb.bpi bdertl.bpi 
+      bcbsmp.bpi ibsmp.bpi vcldbx.bpi qrpt.bpi teeui.bpi teedb.bpi tee.bpi 
+      dss.bpi nmfast.bpi dclocx.bpi dsnap.bpi inet.bpi inetdb.bpi adortl.bpi 
+      bcbie.bpi ibxpress.bpi teeqr.bpi"/>
+    <PATHCPP value=".;MotorAndIO;SecsGem;HT172_Module;Include;Automation;HT172_Module\CCD;FSM;HT172_Module\Loader;HT172_Module\Loader\LoaderMain;HT172_Module\Loader\LoadNewTray;HT172_Module\Loader\TrayToWork;HT172_Module\Loader\TrayToTransfer"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;_VIS_NOLIB"/>
+    <MAINSOURCE value="HT172.cpp"/>
+    <INCLUDEPATH value="HT172_Module\Loader\TrayToTransfer;HT172_Module\Loader\TrayToWork;HT172_Module\Loader\LoadNewTray;HT172_Module\Loader\LoaderMain;HT172_Module\Loader;FSM;HT172_Module\CCD;Automation;HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl"/>
+    <LIBPATH value="HT172_Module\Loader\TrayToTransfer;HT172_Module\Loader\TrayToWork;HT172_Module\Loader\LoadNewTray;HT172_Module\Loader\LoaderMain;HT172_Module\Loader;FSM;HT172_Module\CCD;Automation;HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl"/>
+    <WARNINGS value="-w8092 -w8091 -w8090 -w8089 -w8087 -wuse -wstu -w-pch -w-par -wnod -w-hid 
+      -w-cpt -wamp"/>
+    <WARNOPTSTR value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-IHT172_Module\Loader\TrayToTransfer -IHT172_Module\Loader\TrayToWork 
+      -IHT172_Module\Loader\LoadNewTray -IHT172_Module\Loader\LoaderMain 
+      -IHT172_Module\Loader -IFSM -IHT172_Module\CCD -IAutomation -IHT172_Module 
+      -ID:\ProgramFiles\Borland\CBuilder6\Projects -ISecsGem -IInclude -ILib 
+      -IMotorAndIO -I$(BCB)\Imports -I$(BCB)\include -I$(BCB)\include\vcl 
+      -ID:\HT9045\elec\Component -ID:\HT9045\elec\myvcl -src_suffix cpp -D_DEBUG 
+      -boa"/>
+    <CFLAG1 value="-Od -H=D:\HT172\Obj\vcl60.csm -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tW 
+      -tWM"/>
+    <PFLAGS value="-N2..\Obj -N0..\Obj -$Y+ -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/ml /w2 /zi"/>
+    <LFLAGS value="-I..\Obj -D&quot;&quot; -aa -Tpe -GD -s -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="HT172.cpp" FORMNAME="" UNITNAME="HT172" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172.res" FORMNAME="" UNITNAME="HT172.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="IncludeAllHeader.h" FORMNAME="" UNITNAME="IncludeAllHeader" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Include\mn200.h" FORMNAME="" UNITNAME="mn200" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Include\type_def.h" FORMNAME="" UNITNAME="type_def" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Include\CSmc.h" FORMNAME="" UNITNAME="CSmc" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Include\CSmcdef.h" FORMNAME="" UNITNAME="CSmcdef" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Lib\CSMC.lib" FORMNAME="" UNITNAME="CSMC" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Lib\MN200BCB.lib" FORMNAME="" UNITNAME="MN200BCB" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MachineType.h" FORMNAME="" UNITNAME="MachineType" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="handlerlog.cpp" FORMNAME="" UNITNAME="handlerlog" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="myTimer.cpp" FORMNAME="" UNITNAME="myTimer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="main.cpp" FORMNAME="fMain" UNITNAME="main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="database.cpp" FORMNAME="DataModule1" UNITNAME="database" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="cinitial.cpp" FORMNAME="" UNITNAME="cinitial" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="mycylin.cpp" FORMNAME="" UNITNAME="mycylin" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="cmydef.cpp" FORMNAME="" UNITNAME="cmydef" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="mykitsuck.cpp" FORMNAME="" UNITNAME="mykitsuck" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="mymessbox.cpp" FORMNAME="MyMessageBox" UNITNAME="mymessbox" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="mysensor.cpp" FORMNAME="" UNITNAME="mysensor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="myswitch.cpp" FORMNAME="" UNITNAME="myswitch" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="mytray.cpp" FORMNAME="" UNITNAME="mytray" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="note.cpp" FORMNAME="fNote" UNITNAME="note" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="cprod.cpp" FORMNAME="" UNITNAME="cprod" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="cpublic.cpp" FORMNAME="" UNITNAME="cpublic" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="csystem.cpp" FORMNAME="" UNITNAME="csystem" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uhome.cpp" FORMNAME="fHome" UNITNAME="uhome" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uruncontrol.cpp" FORMNAME="" UNITNAME="uruncontrol" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="iosetview.cpp" FORMNAME="fiosetview" UNITNAME="iosetview" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="setup.cpp" FORMNAME="fSetup" UNITNAME="setup" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="data.cpp" FORMNAME="fData" UNITNAME="data" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="maintenance.cpp" FORMNAME="fMaintenance" UNITNAME="maintenance" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Password.cpp" FORMNAME="fPassword" UNITNAME="Password" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uteach.cpp" FORMNAME="fTeach" UNITNAME="uteach" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ckernel.cpp" FORMNAME="" UNITNAME="ckernel" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uMotorTest.cpp" FORMNAME="fMotorTest" UNITNAME="uMotorTest" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uOffset.cpp" FORMNAME="fOffset" UNITNAME="uOffset" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uspeed.cpp" FORMNAME="fSpeed" UNITNAME="uspeed" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LevelSetup.cpp" FORMNAME="fLevelSetup" UNITNAME="LevelSetup" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="systools.cpp" FORMNAME="FormSysTools" UNITNAME="systools" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="deviceinfo.cpp" FORMNAME="" UNITNAME="deviceinfo" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="myQwertyKeyBoard.cpp" FORMNAME="fQwertyKey" UNITNAME="myQwertyKeyBoard" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="common.cpp" FORMNAME="" UNITNAME="common" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MotorAndIO\myio.cpp" FORMNAME="" UNITNAME="myio" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MotorAndIO\myio_MN200.cpp" FORMNAME="" UNITNAME="myio_MN200" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MotorAndIO\HTMotor.cpp" FORMNAME="" UNITNAME="HTMotor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MotorAndIO\mymotor.cpp" FORMNAME="" UNITNAME="mymotor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MotorAndIO\mySMCmotor.cpp" FORMNAME="" UNITNAME="mySMCmotor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SecsGem\uHGemEquipment.cpp" FORMNAME="HGem" UNITNAME="uHGemEquipment" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SecsGem\UsecegemMainFrom.cpp" FORMNAME="FSECS" UNITNAME="UsecegemMainFrom" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SecsGem\uHGemClass.cpp" FORMNAME="" UNITNAME="uHGemClass" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uTrayEditForm.cpp" FORMNAME="TrayEditForm" UNITNAME="uTrayEditForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SecsGem\uHGemHT172.cpp" FORMNAME="" UNITNAME="uHGemHT172" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\aLoader.cpp" FORMNAME="" UNITNAME="aLoader.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\aSortArm.cpp" FORMNAME="" UNITNAME="aSortArm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\aTrayArm.cpp" FORMNAME="" UNITNAME="aTrayArm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\aMagArm.cpp" FORMNAME="" UNITNAME="aMagArm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyStringList.cpp" FORMNAME="" UNITNAME="MyStringList" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\aMagazine.cpp" FORMNAME="" UNITNAME="aMagazine" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyBinDisp.cpp" FORMNAME="DataModule3" UNITNAME="MyBinDisp" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="Barcode.cpp" FORMNAME="frm2DID" UNITNAME="Barcode" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ModbusTCPClient.cpp" FORMNAME="" UNITNAME="ModbusTCPClient" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyPLC_IO_Modbus.cpp" FORMNAME="" UNITNAME="MyPLC_IO_Modbus" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ComPort.cpp" FORMNAME="fComPort" UNITNAME="ComPort" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uPadInterface.cpp" FORMNAME="fPadInterface" UNITNAME="uPadInterface" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="TrayStepMotor.cpp" FORMNAME="dmTrayMotor" UNITNAME="TrayStepMotor" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
+      <FILE FILENAME="TextProcess.cpp" FORMNAME="" UNITNAME="TextProcess" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="mn200.h" FORMNAME="" UNITNAME="mn200.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="aseTest.cpp" FORMNAME="ASESendMessage" UNITNAME="aseTest" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MotorAndIO\myMN200motor.cpp" FORMNAME="" UNITNAME="myMN200motor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\DecodeXML.cpp" FORMNAME="fXML" UNITNAME="DecodeXML" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="FTPClient.cpp" FORMNAME="fFTPClient" UNITNAME="FTPClient" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SecsGem\TasmInfo.cpp" FORMNAME="" UNITNAME="TasmInfo" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="uTimeTool.cpp" FORMNAME="" UNITNAME="uTimeTool" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="CosFunction.cpp" FORMNAME="" UNITNAME="CosFunction" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Include\cJSON.h" FORMNAME="" UNITNAME="cJSON.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Include\cJSON.c" FORMNAME="" UNITNAME="cJSON" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Automation\Auto172.cpp" FORMNAME="" UNITNAME="Auto172.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Automation\automation.cpp" FORMNAME="fAutomation" UNITNAME="automation" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="FileInfo.cpp" FORMNAME="" UNITNAME="FileInfo" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\CCD\cCCDCtrl.cpp" FORMNAME="" UNITNAME="cCCDCtrl" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="FSM\FSMRunner.cpp" FORMNAME="" UNITNAME="FSMRunner" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\TLoaderInterface.cpp" FORMNAME="" UNITNAME="TLoaderInterface" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\LoaderMain\LoaderMainStep.cpp" FORMNAME="" UNITNAME="LoaderMainStep" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\LoaderMain\LoaderMainTable.cpp" FORMNAME="" UNITNAME="LoaderMainTable" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\LoadNewTray\LoadNewTrayStep.cpp" FORMNAME="" UNITNAME="LoadNewTrayStep" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\LoadNewTray\LoadNewTrayTable.cpp" FORMNAME="" UNITNAME="LoadNewTrayTable" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\LoadNewTray\LoadNewTrayExec.cpp" FORMNAME="" UNITNAME="LoadNewTrayExec" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\TrayToWork\TrayToWorkStep.cpp" FORMNAME="" UNITNAME="TrayToWorkStep" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\TrayToWork\TrayToWorkExec.cpp" FORMNAME="" UNITNAME="TrayToWorkExec" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\TrayToTransfer\TrayToTransferStep.cpp" FORMNAME="" UNITNAME="TrayToTransferStep" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\TrayToTransfer\TrayToTransferExec.cpp" FORMNAME="" UNITNAME="TrayToTransferExec" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\TrayToWork\TrayToWorkTable.cpp" FORMNAME="" UNITNAME="TrayToWorkTable" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HT172_Module\Loader\TrayToTransfer\TrayToTransferTable.cpp" FORMNAME="" UNITNAME="TrayToTransferTable" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=25
+Build=19
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1028
+CodePage=950
+
+[Version Info Keys]
+CompanyName=HonPrec
+FileDescription=
+FileVersion=1.0.25.19
+InternalName=
+LegalCopyright=HonPrec
+LegalTrademarks=
+OriginalFilename=
+ProductName=HT-172
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=30
+Item0=HT172_Module\Loader\TrayToTransfer;HT172_Module\Loader\TrayToWork;HT172_Module\Loader\LoadNewTray;HT172_Module\Loader\LoaderMain;HT172_Module\Loader;FSM;HT172_Module\CCD;Automation;HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item1=FSM;HT172_Module\CCD;Automation;HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item2=Automation;HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item3=HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item4=HT172_Module;D:\HT1600C\HT1600C_Program;D:\ProgramFiles\Borland\CBuilder6\Projects;D:\HT9045\Code_KYEC_Bu1_2X2\HT9046LS_Code_V3.27V.566_20220524;D:\Program Files\Borland\CBuilder6\Projects;C:\Program Files\EurekaLab\EurekaLog 6\CBuilder6;C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item5=D:\ProgramFiles\Borland\CBuilder6\Projects;D:\HT9045\Code_KYEC_Bu1_2X2\HT9046LS_Code_V3.27V.566_20220524;D:\Program Files\Borland\CBuilder6\Projects;C:\Program Files\EurekaLab\EurekaLog 6\CBuilder6;C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item6=D:\HT9045\code_SmartSetup\HT9046LS_Code_V3.32.810_20240313;D:\ProgramFiles\Borland\CBuilder6\Projects;D:\HT9045\Code_KYEC_Bu1_2X2\HT9046LS_Code_V3.27V.566_20220524;D:\Program Files\Borland\CBuilder6\Projects;C:\Program Files\EurekaLab\EurekaLog 6\CBuilder6;C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item7=C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item8=C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item9=C:\Program Files\Borland\CBuilder5\Projects\;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects\;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item10=C:\Program Files\Borland\CBuilder5\Projects\;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects\;D:\elec\Component\;D:\elec\HeadLabel\;D:\elec\myvcl\
+Item11=C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects\;D:\elec\Component\;D:\elec\HeadLabel\;D:\elec\myvcl\
+Item12=HT1501_Module;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects\;D:\elec\Component\;D:\elec\HeadLabel\;D:\elec\myvcl\
+Item13=SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;d:\Program Files\Borland\CBuilder5\Projects\;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item14=d:\Program Files\Borland\CBuilder5\Projects\;..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL;MotorAndIO;Lib;D:\elec\HeadLabel\;..\elec\HeadLabel
+Item15=d:\Program Files\Borland\CBuilder5\Projects;..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL;MotorAndIO;Lib;D:\elec\HeadLabel\;..\elec\HeadLabel
+Item16=..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL;MotorAndIO;Lib;D:\elec\HeadLabel\;D:\HT-3009\elec\HeadLabel
+Item17=..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL;MotorAndIO;Lib;D:\elec\HeadLabel\
+Item18=..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL;MotorAndIO;Lib;D:\elec\HeadLabel
+Item19=..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL;MotorAndIO;Lib
+Item20=SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL;D:\HT-3009\HT3009_Program_60\Include;D:\HT-3009\HT3009_Program_60\MotorAndIO;D:\HT-3009\HT3009_Program_60\Lib
+Item21=SecsGem;d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL
+Item22=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\elec\component;..\Elec\MyVCL
+Item23=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\HT-3009\elec\component\;D:\HT-3009\Elec\MyVCL\
+Item24=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\D:\HT-3009\elec\component\;D:\Elec\MyVCL\
+Item25=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\elec\component\;D:\Elec\MyVCL\
+Item26=d:\Program Files\Borland\CBuilder5\Projects;HT3009_Module;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\elec\component\;D:\Elec\MyVCL\
+Item27=HT3009_Module;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\elec\component\;D:\Elec\MyVCL\
+Item28=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;PTI_Automation;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\elec\component\;D:\Elec\MyVCL\
+Item29=HT3009_Module;PTI_Automation;..\Include;Include;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;D:\elec\component\;D:\Elec\MyVCL\
+
+[HistoryLists\hlLibraryPath]
+Count=30
+Item0=HT172_Module\Loader\TrayToTransfer;HT172_Module\Loader\TrayToWork;HT172_Module\Loader\LoadNewTray;HT172_Module\Loader\LoaderMain;HT172_Module\Loader;FSM;HT172_Module\CCD;Automation;HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item1=FSM;HT172_Module\CCD;Automation;HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item2=Automation;HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item3=HT172_Module;D:\ProgramFiles\Borland\CBuilder6\Projects;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item4=HT172_Module;D:\HT1600C\HT1600C_Program;D:\ProgramFiles\Borland\CBuilder6\Projects;D:\HT9045\Code_KYEC_Bu1_2X2\HT9046LS_Code_V3.27V.566_20220524;D:\Program Files\Borland\CBuilder6\Projects;C:\Program Files\EurekaLab\EurekaLog 6\CBuilder6;C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item5=D:\ProgramFiles\Borland\CBuilder6\Projects;D:\HT9045\Code_KYEC_Bu1_2X2\HT9046LS_Code_V3.27V.566_20220524;D:\Program Files\Borland\CBuilder6\Projects;C:\Program Files\EurekaLab\EurekaLog 6\CBuilder6;C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item6=D:\HT9045\code_SmartSetup\HT9046LS_Code_V3.32.810_20240313;D:\ProgramFiles\Borland\CBuilder6\Projects;D:\HT9045\Code_KYEC_Bu1_2X2\HT9046LS_Code_V3.27V.566_20220524;D:\Program Files\Borland\CBuilder6\Projects;C:\Program Files\EurekaLab\EurekaLog 6\CBuilder6;C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item7=C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item8=C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item9=C:\Program Files\Borland\CBuilder5\Projects\;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item10=C:\Program Files\Borland\CBuilder5\Projects\;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\elec\Component\;D:\elec\HeadLabel\;D:\elec\myvcl\
+Item11=C:\Program Files\Borland\CBuilder5\Projects;HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\elec\Component\;D:\elec\HeadLabel\;D:\elec\myvcl\
+Item12=HT1501_Module;SecsGem;Include;Lib;MotorAndIO;d:\Program Files\Borland\CBuilder5\Projects\;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\elec\Component\;D:\elec\HeadLabel\;D:\elec\myvcl\
+Item13=HT1501_Module;d:\Program Files\Borland\CBuilder5\Projects\;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\elec\Component\;D:\elec\HeadLabel\;D:\elec\myvcl\
+Item14=d:\Program Files\Borland\CBuilder5\Projects\;SecsGem;Include;Lib;MotorAndIO;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item15=d:\Program Files\Borland\CBuilder5\Projects\;..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL;Lib;MotorAndIO;D:\elec\HeadLabel\;..\elec\HeadLabel
+Item16=d:\Program Files\Borland\CBuilder5\Projects;..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL;Lib;MotorAndIO;D:\elec\HeadLabel\;..\elec\HeadLabel
+Item17=..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL;Lib;MotorAndIO;D:\elec\HeadLabel\;D:\HT-3009\elec\HeadLabel
+Item18=..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL;Lib;MotorAndIO;D:\elec\HeadLabel\
+Item19=..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL;Lib;MotorAndIO;D:\elec\HeadLabel
+Item20=..\Include;SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL;Lib;MotorAndIO
+Item21=SecsGem;HT3009_Module;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL;D:\HT-3009\HT3009_Program_60\Include;D:\HT-3009\HT3009_Program_60\Lib;D:\HT-3009\HT3009_Program_60\MotorAndIO
+Item22=SecsGem;..\Include;d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Lib;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL
+Item23=..\Include;d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Lib;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL
+Item24=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Lib;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\Elec;..\elec\component;..\Elec\MyVCL
+Item25=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Lib;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;..\elec\component;..\Elec;..\Elec\MyVCL
+Item26=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Lib;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\HT-3009\elec\component\;D:\HT-3009\Elec\;D:\HT-3009\Elec\MyVCL\
+Item27=d:\Program Files\Borland\CBuilder5\Projects\;HT3009_Module;..\Lib;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\elec\component\;D:\Elec\;D:\Elec\MyVCL\
+Item28=d:\Program Files\Borland\CBuilder5\Projects;HT3009_Module;..\Lib;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\elec\component\;D:\Elec\;D:\Elec\MyVCL\
+Item29=HT3009_Module;..\Lib;Include;$(BCB)\Imports;$(BCB)\Projects\Lib;$(BCB)\lib\obj;$(BCB)\lib;D:\elec\component\;D:\Elec\;D:\Elec\MyVCL\
+
+[HistoryLists\hlDebugSourcePath]
+Count=6
+Item0=D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+Item1=D:\HT9045\elec\Component;D:\HT9045\elec\myvcl;D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item2=D:\elec\Component;D:\elec\HeadLabel;D:\elec\myvcl
+Item3=D:\Program Files\Borland\CBuilder5\Source
+Item4=$(BCB)\source\vcl;D:\Program Files\Borland\CBuilder5\Source
+Item5=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=2
+Item0=_DEBUG
+Item1=_DEBUG;EUREKALOG;EUREKALOG_VER6
+
+[HistoryLists\hlIntOutputDir]
+Count=3
+Item0=..\Obj
+Item1=D:\HT-1501\Obj
+Item2=D:\HT-2601\Obj
+
+[HistoryLists\hlFinalOutputDir]
+Count=4
+Item0=..\EXE\
+Item1=..\EXE
+Item2=D:\HT-1501\EXE
+Item3=D:\HT-2601\EXE
+
+[Debugging]
+DebugSourceDirs=D:\HT9045\elec\Component;D:\HT9045\elec\myvcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=192.168.100.177
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=1
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

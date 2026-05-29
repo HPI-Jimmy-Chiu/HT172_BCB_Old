@@ -1,0 +1,145 @@
+===================================================
+[Receive] 2024-10-17 13:19:32.879
+
+.
+
+[Receive] Linktest.req
+[Send]    Linktest.rsp
+---------------------------------------------------
+[Send]    2024-10-17 13:19:32.885
+
+.
+
+===================================================
+[Receive] 2024-10-17 13:19:49.766
+[S2F41] Remote Command with Parameters
+<L[2]
+  <A[12] "SET_LOT_INFO">
+  <L[5]
+    <L[2]
+      <A[6] "LOT_ID">
+      <A[9] "Lot123.00">
+    >
+    <L[2]
+      <A[5] "RC_NO">
+      <A[12] "W24082219-T1">
+    >
+    <L[2]
+      <A[5] "OP_ID">
+      <A[7] "1095106">
+    >
+    <L[2]
+      <A[7] "LOT_SUM">
+      <A[2382] "<?xml version="1.0" ?><FT_Summary><HEADER><VERSION>1.0</VERSION><CUST_CODE>N106</CUST_CODE><Device>ABC123</Device><LOT_ID>Lot123.00</LOT_ID><RUNCARD_NO>W24010011-T1</RUNCARD_NO><Stage>FT1</Stage><TP_NAME>ABC123_Ver1.prog</TP_NAME><START_TIME>2024-01-08 18:20:12</START_TIME><END_TIME>2024-01-08 17:41:22</END_TIME><TEST_DIE>1000</TEST_DIE><TEST_PASS>950</TEST_PASS><PKG_TYPE>FCBGA</PKG_TYPE><TRAY_QTY>10</TRAY_QTY></HEADER><TRAY_MAP_LIST><TRAY ID="tray123-1-0001" >Lot123.00_W24010011-T1_FT1_T1_PASS_tray123-1-0001_20240108135045.txt</TRAY><TRAY ID="tray123-1-0002" >Lot123.00_W24010011-T1_FT1_T1_PASS_tray123-1-0002_20240108141122.txt</TRAY><TRAY ID="tray123-1-0003" >Lot123.00_W24010011-T1_FT1_T1_PASS_tray123-1-0003_20240108142122.txt</TRAY><TRAY ID="tray123-1-0004" >Lot123.00_W24010011-T1_FT1_T1_PASS_tray123-1-0004_20240108143122.txt</TRAY><TRAY ID="tray123-1-0005" >Lot123.00_W24010011-T1_FT1_T1_PASS_tray123-1-0005_20240108144122.txt</TRAY><TRAY ID="tray123-1-0006" >Lot123.00_W24010011-T1_FT1_T1_PASS_tray123-1-0006_20240108145122.txt</TRAY><TRAY ID="tray123-1-0007" >Lot123.00_W24010011-T1_FT1_R1_PASS_tray123-1-0007_20240108151122.txt</TRAY><TRAY ID="tray123-1-0008" >Lot123.00_W24010011-T1_FT1_R2_PASS_tray123-1-0008_20240108152122.txt</TRAY><TRAY ID="tray123-1-0009" >Lot123.00_W24010011-T1_FT1_R3_PASS_tray123-1-0009_20240108153122.txt</TRAY><TRAY ID="tray123-1-0010" >Lot123.00_W24010011-T1_FT1_R3_FAIL_tray123-1-0010_20240108154122.txt</TRAY></TRAY_MAP_LIST><FTDATA><HBINSUM><!--Format: BinNo|PassFail|TotalQty--><HBIN>1|P|150</HBIN><HBIN>2|P|100</HBIN><HBIN>3|P|50</HBIN><HBIN>22|P|50</HBIN><HBIN>25|P|50</HBIN><HBIN>33|P|50</HBIN><HBIN>37|P|50</HBIN><HBIN>45|P|50</HBIN><HBIN>48|P|50</HBIN><HBIN>56|P|50</HBIN><HBIN>57|P|50</HBIN><HBIN>65|P|50</HBIN><HBIN>73|P|50</HBIN><HBIN>82|P|50</HBIN><HBIN>90|P|50</HBIN><HBIN>93|P|50</HBIN><HBIN>97|F|25</HBIN><HBIN>98|F|15</HBIN><HBIN>99|F|10</HBIN></HBINSUM><SBINSUM><!--Format: BinNo|PassFail|TotalQty--><SBIN>1|P|150</SBIN><SBIN>2|P|100</SBIN><SBIN>3|P|50</SBIN><SBIN>22|P|50</SBIN><SBIN>25|P|50</SBIN><SBIN>33|P|50</SBIN><SBIN>37|P|50</SBIN><SBIN>45|P|50</SBIN><SBIN>48|P|50</SBIN><SBIN>56|P|50</SBIN><SBIN>57|P|50</SBIN><SBIN>65|P|50</SBIN><SBIN>73|P|50</SBIN><SBIN>82|P|50</SBIN><SBIN>90|P|50</SBIN><SBIN>93|P|50</SBIN><SBIN>9700|F|25</SBIN><SBIN>9800|F|15</SBIN><SBIN>9900|F|10</SBIN></SBINSUM></FTDATA></FT_Summary>">
+    >
+    <L[2]
+      <A[13] "TRAY_MAP_PATH">
+      <A[11] "D:\TrayMap\">
+    >
+  >
+>
+.
+
+---------------------------------------------------
+[Send]    2024-10-17 13:19:50.028
+[S2F42] Remote Command Acknowledge
+<L[2]
+  <B[1] 0x00>
+  <L[0]
+  >
+>
+.
+
+===================================================
+[Receive] 2024-10-17 13:20:01.641
+[S7F5] Process Program Request
+<A[7] "test333">
+.
+
+---------------------------------------------------
+[Send]    2024-10-17 13:20:01.652
+[S7F6] Process Program Data
+<L[2]
+  <A[7] "test333">
+  <A[4735] "[tsBinSetting]\r\nedBinSetting=edBinSetting\r\nedInput=2\r\nedLink=edLink\r\nedBinSettingText_FT=NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse\r\nedLinkFT=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\r\nrgSoter=0\r\ncbEnableBin00=0\r\ncbEnableBin01=1\r\ncbEnableBin02=1\r\ncbEnableBin03=1\r\ncbEnableBin04=1\r\ncbEnableBin05=1\r\ncbEnableBin06=1\r\ncbEnableBin07=1\r\ncbEnableBin08=1\r\ncbEnableBin09=1\r\ncbEnableBin10=1\r\ncbEnableBin11=1\r\ncbEnableBin12=1\r\ncbEnableBin13=1\r\ncbEnableBin14=1\r\ncbEnableBin15=1\r\ncbEnableBin16=1\r\ncbEnableBin17=1\r\ncbEnableBin18=1\r\ncbEnableBin19=1\r\ncbEnableBin20=1\r\ncbEnableBin21=1\r\ncbEnableBin22=1\r\ncbEnableBin23=1\r\ncbEnableBin24=1\r\ncbEnableBin25=1\r\ncbEnableBin26=1\r\ncbEnableBin27=1\r\ncbEnableBin28=1\r\ncbEnableBin29=1\r\ncbEnableBin30=1\r\ncbEnableBin31=1\r\ncbEnableBin32=1\r\ncbEnableBin33=1\r\ncbEnableBin34=1\r\ncbEnableBin35=1\r\ncbEnableBin36=1\r\ncbEnableBin37=1\r\ncbEnableBin38=1\r\ncbEnableBin39=1\r\ncbEnableBin40=1\r\ncbEnableBin41=1\r\ncbEnableBin42=1\r\ncbEnableBin43=1\r\ncbEnableBin44=1\r\ncbEnableBin45=1\r\ncbEnableBin46=1\r\ncbEnableBin47=1\r\ncbEnableBin48=0\r\ncbEnableBin49=0\r\ncbEnableBin50=0\r\ncbEnableBin51=0\r\ncbEnableBin52=0\r\ncbEnableBin53=0\r\ncbEnableBin54=0\r\ncbEnableBin55=0\r\ncbEnableBin56=0\r\ncbEnableBin57=0\r\ncbEnableBin58=0\r\ncbEnableBin59=0\r\ncbEnableBin60=0\r\ncbEnableBin61=0\r\ncbEnableBin62=0\r\ncbEnableBin63=0\r\ncbEnableBin64=0\r\ncbEnableBin65=0\r\ncbEnableBin66=0\r\ncbEnableBin67=0\r\ncbEnableBin68=0\r\ncbEnableBin69=0\r\ncbEnableBin70=0\r\ncbEnableBin71=0\r\ncbEnableBin72=0\r\ncbEnableBin73=0\r\ncbEnableBin74=0\r\ncbEnableBin75=0\r\ncbEnableBin76=0\r\ncbEnableBin77=0\r\ncbEnableBin78=0\r\ncbEnableBin79=0\r\ncbEnableBin80=0\r\ncbEnableBin81=0\r\ncbEnableBin82=0\r\ncbEnableBin83=0\r\ncbEnableBin84=0\r\ncbEnableBin85=0\r\ncbEnableBin86=0\r\ncbEnableBin87=0\r\ncbEnableBin88=0\r\ncbEnableBin89=0\r\ncbEnableBin90=0\r\ncbEnableBin91=0\r\ncbEnableBin92=0\r\ncbEnableBin93=0\r\ncbEnableBin94=0\r\ncbEnableBin95=0\r\ncbEnableBin96=0\r\ncbEnableBin97=0\r\ncbEnableBin98=0\r\ncbEnableBin99=0\r\n[TabSheet2]\r\nedRetryCount=3\r\nedAutoPickDelay=1\r\nedAutoPlaceDelay=1\r\nEdit3=3\r\nedMagPickDelay=0.5\r\nedMagPlaceDelay=0.5\r\nedAutoPreZDown=3\r\ncbAutoPreZDown=0\r\ncbAutoPreSuckOff=0\r\nedAutoPreSuckOff=3\r\nedAutoPreSuckOn=3\r\ncbAutoPreSuckOn=0\r\ncbMagPreSuckOn=0\r\ncbMagPreSuckOff=0\r\nedMagPreSuckOn=3\r\nedMagPreSuckOff=3\r\ncbMagPreZDown=0\r\nedMagPreZDown=3\r\nedtDestroyCheckTime=0.2\r\nrgUseSuck=1\r\n[tsCCD]\r\nedAddr_Loader=127.000.000.100\r\nedPort_Loader=5000\r\nedCmd_Loader=         \r\nedMaxIDLen_Loader=10\r\nedMinIDLen_Loader=5\r\nedErrIDStr_Loader=ERROR\r\ncbEnable_Loader=1\r\nedAddr_Empty1=127.000.000.100\r\nedPort_Empty1=5001\r\nedCmd_Empty1=         \r\nedMaxIDLen_Empty1=10\r\nedMinIDLen_Empty1=5\r\nedErrIDStr_Empty1=ERROR\r\ncbEnable_Empty1=0\r\nedAddr_Empty2=127.000.000.100\r\nedPort_Empty2=5002\r\nedCmd_Empty2=         \r\nedMaxIDLen_Empty2=10\r\nedMinIDLen_Empty2=5\r\nedErrIDStr_Empty2=ERROR\r\ncbEnable_Empty2=0\r\nedAddr_Empty3=127.000.000.100\r\nedPort_Empty3=5003\r\nedCmd_Empty3=         \r\nedMaxIDLen_Empty3=10\r\nedMinIDLen_Empty3=5\r\nedErrIDStr_Empty3=ERROR\r\ncbEnable_Empty3=0\r\nmeLog_Empty3=         \r\n[TabSetup]\r\nImage3=0\r\nedXStart=12.95\r\nedXPitch=10\r\nedYStart=12.5\r\nedYPitch=10\r\nedXDivision=12\r\nedYDivision=30\r\nrgDataFormat=2\r\nImage4=0\r\nedLoadTrayArrival=5\r\nedLoadLock=0.1\r\nedLoadMiddle=3\r\nedLoadDown=3\r\nImage2=0\r\nedUnloadUp=3\r\nedUnloadArrival=3\r\nedLDSpeed=50\r\nedLD2ndSpeed=10\r\nedEmpty1Speed=50\r\nedEmpty12ndSpeed=10\r\nedEmpty2Speed=50\r\nedEmpty22ndSpeed=10\r\nedTrack1Speed=50\r\nedTrack12ndSpeed=10\r\nedTrack2Speed=50\r\nedTrack22ndSpeed=10\r\nedTrack3Speed=50\r\nedTrack32ndSpeed=10\r\nedTrack4Speed=50\r\nedTrack42ndSpeed=10\r\nedTransferSpeed=50\r\nedTransfer2ndSpeed=10\r\n\r\n\r\n\r\n\r\n\r\n">
+>
+.
+
+===================================================
+[Receive] 2024-10-17 13:20:14.134
+[S7F3] Process Program Send
+<L[2]
+  <A[7] "test333">
+  <A[4703] "[tsBinSetting]\r\nedBinSetting=edBinSetting\r\nedInput=2\r\nedLink=edLink\r\nedBinSettingText_FT=NotUse,Auto01,Auto02,Auto03,Mag201,Mag202,Mag203,Mag204,Mag205,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse,NotUse\r\nedLinkFT=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\r\nrgSoter=0\r\ncbEnableBin00=0\r\ncbEnableBin01=1\r\ncbEnableBin02=1\r\ncbEnableBin03=1\r\ncbEnableBin04=1\r\ncbEnableBin05=1\r\ncbEnableBin06=1\r\ncbEnableBin07=1\r\ncbEnableBin08=1\r\ncbEnableBin09=1\r\ncbEnableBin10=1\r\ncbEnableBin11=1\r\ncbEnableBin12=1\r\ncbEnableBin13=1\r\ncbEnableBin14=1\r\ncbEnableBin15=1\r\ncbEnableBin16=1\r\ncbEnableBin17=1\r\ncbEnableBin18=1\r\ncbEnableBin19=1\r\ncbEnableBin20=1\r\ncbEnableBin21=1\r\ncbEnableBin22=1\r\ncbEnableBin23=1\r\ncbEnableBin24=1\r\ncbEnableBin25=1\r\ncbEnableBin26=1\r\ncbEnableBin27=1\r\ncbEnableBin28=1\r\ncbEnableBin29=1\r\ncbEnableBin30=1\r\ncbEnableBin31=1\r\ncbEnableBin32=1\r\ncbEnableBin33=1\r\ncbEnableBin34=1\r\ncbEnableBin35=1\r\ncbEnableBin36=1\r\ncbEnableBin37=1\r\ncbEnableBin38=1\r\ncbEnableBin39=1\r\ncbEnableBin40=1\r\ncbEnableBin41=1\r\ncbEnableBin42=1\r\ncbEnableBin43=1\r\ncbEnableBin44=1\r\ncbEnableBin45=1\r\ncbEnableBin46=1\r\ncbEnableBin47=1\r\ncbEnableBin48=0\r\ncbEnableBin49=0\r\ncbEnableBin50=0\r\ncbEnableBin51=0\r\ncbEnableBin52=0\r\ncbEnableBin53=0\r\ncbEnableBin54=0\r\ncbEnableBin55=0\r\ncbEnableBin56=0\r\ncbEnableBin57=0\r\ncbEnableBin58=0\r\ncbEnableBin59=0\r\ncbEnableBin60=0\r\ncbEnableBin61=0\r\ncbEnableBin62=0\r\ncbEnableBin63=0\r\ncbEnableBin64=0\r\ncbEnableBin65=0\r\ncbEnableBin66=0\r\ncbEnableBin67=0\r\ncbEnableBin68=0\r\ncbEnableBin69=0\r\ncbEnableBin70=0\r\ncbEnableBin71=0\r\ncbEnableBin72=0\r\ncbEnableBin73=0\r\ncbEnableBin74=0\r\ncbEnableBin75=0\r\ncbEnableBin76=0\r\ncbEnableBin77=0\r\ncbEnableBin78=0\r\ncbEnableBin79=0\r\ncbEnableBin80=0\r\ncbEnableBin81=0\r\ncbEnableBin82=0\r\ncbEnableBin83=0\r\ncbEnableBin84=0\r\ncbEnableBin85=0\r\ncbEnableBin86=0\r\ncbEnableBin87=0\r\ncbEnableBin88=0\r\ncbEnableBin89=0\r\ncbEnableBin90=0\r\ncbEnableBin91=0\r\ncbEnableBin92=0\r\ncbEnableBin93=0\r\ncbEnableBin94=0\r\ncbEnableBin95=0\r\ncbEnableBin96=0\r\ncbEnableBin97=0\r\ncbEnableBin98=0\r\ncbEnableBin99=0\r\n[TabSheet2]\r\nedRetryCount=3\r\nedAutoPickDelay=1\r\nedAutoPlaceDelay=1\r\nEdit3=3\r\nedMagPickDelay=0.5\r\nedMagPlaceDelay=0.5\r\nedAutoPreZDown=3\r\ncbAutoPreZDown=0\r\ncbAutoPreSuckOff=0\r\nedAutoPreSuckOff=3\r\nedAutoPreSuckOn=3\r\ncbAutoPreSuckOn=0\r\ncbMagPreSuckOn=0\r\ncbMagPreSuckOff=0\r\nedMagPreSuckOn=3\r\nedMagPreSuckOff=3\r\ncbMagPreZDown=0\r\nedMagPreZDown=3\r\nedtDestroyCheckTime=0.2\r\nrgUseSuck=1\r\n[tsCCD]\r\nedAddr_Loader=127.000.000.100\r\nedPort_Loader=5000\r\nedCmd_Loader=     \r\nedMaxIDLen_Loader=10\r\nedMinIDLen_Loader=5\r\nedErrIDStr_Loader=ERROR\r\ncbEnable_Loader=1\r\nedAddr_Empty1=127.000.000.100\r\nedPort_Empty1=5001\r\nedCmd_Empty1=     \r\nedMaxIDLen_Empty1=10\r\nedMinIDLen_Empty1=5\r\nedErrIDStr_Empty1=ERROR\r\ncbEnable_Empty1=0\r\nedAddr_Empty2=127.000.000.100\r\nedPort_Empty2=5002\r\nedCmd_Empty2=     \r\nedMaxIDLen_Empty2=10\r\nedMinIDLen_Empty2=5\r\nedErrIDStr_Empty2=ERROR\r\ncbEnable_Empty2=0\r\nedAddr_Empty3=127.000.000.100\r\nedPort_Empty3=5003\r\nedCmd_Empty3=     \r\nedMaxIDLen_Empty3=10\r\nedMinIDLen_Empty3=5\r\nedErrIDStr_Empty3=ERROR\r\ncbEnable_Empty3=0\r\nmeLog_Empty3=     \r\n[TabSetup]\r\nImage3=0\r\nedXStart=12.95\r\nedXPitch=10\r\nedYStart=12.5\r\nedYPitch=10\r\nedXDivision=12\r\nedYDivision=30\r\nrgDataFormat=2\r\nImage4=0\r\nedLoadTrayArrival=5\r\nedLoadLock=0.1\r\nedLoadMiddle=3\r\nedLoadDown=3\r\nImage2=0\r\nedUnloadUp=3\r\nedUnloadArrival=3\r\nedLDSpeed=50\r\nedLD2ndSpeed=10\r\nedEmpty1Speed=50\r\nedEmpty12ndSpeed=10\r\nedEmpty2Speed=50\r\nedEmpty22ndSpeed=10\r\nedTrack1Speed=50\r\nedTrack12ndSpeed=10\r\nedTrack2Speed=50\r\nedTrack22ndSpeed=10\r\nedTrack3Speed=50\r\nedTrack32ndSpeed=10\r\nedTrack4Speed=50\r\nedTrack42ndSpeed=10\r\nedTransferSpeed=50\r\nedTransfer2ndSpeed=10\r\n\r\n\r\n">
+>
+.
+
+---------------------------------------------------
+[Send]    2024-10-17 13:20:14.143
+[S7F4] Process Program Acknowledge
+<B[1] 0x00>
+.
+
+===================================================
+[Receive] 2024-10-17 13:20:33.196
+[S2F41] Remote Command with Parameters
+<L[2]
+  <A[9] "PP-SELECT">
+  <L[1]
+    <L[2]
+      <A[7] "test333">
+      <A[0] "">
+    >
+  >
+>
+.
+
+---------------------------------------------------
+[Send]    2024-10-17 13:20:33.702
+[S6F11] Event Report Send
+<L[3]
+  <U4[1] 1>
+  <U4[1] 2>
+  <L[1]
+    <L[2]
+      <U4[1] 2>
+      <L[0]
+      >
+    >
+  >
+>
+.
+
+---------------------------------------------------
+[Send]    2024-10-17 13:20:33.894
+[S2F42] Remote Command Acknowledge
+<L[2]
+  <B[1] 0x00>
+  <L[0]
+  >
+>
+.
+
+===================================================
+[Receive] 2024-10-17 13:20:33.901
+[S6F12] Event Report Acknowledge
+<B[1] 0x00>
+.
+
+===================================================
+[Receive] 2024-10-17 13:20:42.274
+[S7F19] Current EPPID Request
+.
+
+---------------------------------------------------
+[Send]    2024-10-17 13:20:47.363
+[S7F20] Current EPPID Data
+<L[5]
+  <A[31] "ABCDEFGHIJABCDEFGHIJABCDEFGHIJ1">
+  <A[4] "Test">
+  <A[7] "test123">
+  <A[7] "test321">
+  <A[7] "test333">
+>
+.
+

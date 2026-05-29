@@ -1,0 +1,37 @@
+object DataModule3: TDataModule3
+  OldCreateOrder = True
+  Left = 493
+  Top = 330
+  Height = 479
+  Width = 741
+  object BinDisp: TComm
+    CommName = 'COM13'
+    BaudRate = 9600
+    ParityCheck = False
+    Outx_CtsFlow = False
+    Outx_DsrFlow = False
+    DtrControl = DtrEnable
+    DsrSensitivity = False
+    TxContinueOnXoff = False
+    Outx_XonXoffFlow = False
+    Inx_XonXoffFlow = False
+    ReplaceWhenParityError = False
+    IgnoreNullChar = False
+    RtsControl = RtsEnable
+    XonLimit = 500
+    XoffLimit = 500
+    ByteSize = _8
+    Parity = None
+    StopBits = _1
+    XonChar = #17
+    XoffChar = #19
+    ReplacedChar = #0
+    ReadIntervalTimeout = 100
+    ReadTotalTimeoutMultiplier = 0
+    ReadTotalTimeoutConstant = 0
+    WriteTotalTimeoutMultiplier = 0
+    WriteTotalTimeoutConstant = 0
+    Left = 320
+    Top = 192
+  end
+end
