@@ -365,7 +365,7 @@ public:     // User declarations
 
     void __fastcall SetEditOnMouse(TWinControl *PCtrl);
     void ClearBinSet(int tag, bool bSetToFile=false);
-    void AutoBinSet();
+    bool AutoBinSet();
     void AutoBinSet(const std::vector<int> &vbins);
     void AutoBinSet(const std::vector<int> &vbins,int iTrayOrder[eTrayCount]);
     bool ParseCommaSeparatedString(const AnsiString &sBinSelectedList, std::vector<int> &result);

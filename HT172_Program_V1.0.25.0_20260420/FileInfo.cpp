@@ -968,9 +968,230 @@ TStringList* cStateRecord::GetAllCurrentTasks(bool bWithTime)
 #include "HT172_Module\aMagazine.h"
 #include "HT172_Module\aSortArm.h"
 #include "HT172_Module\aTrayArm.h"
+#include "HT172_Module\DecodeXML.h"
+#include "Automation\automation.h"
 #include "mykitsuck.h"
 //---------------------------------------------------------------------------
 extern int gLastPickedMag;
+//---------------------------------------------------------------------------
+static bool CopyStateRecordFile(AnsiString source, AnsiString target)
+{
+    AnsiString targetPath, targetFile, targetExt;
+    FileInfo().SplitPath(target, targetPath, targetFile, targetExt);
+    if(targetPath!="")
+    {
+        FileInfo().EnsureDirectoriesExist(targetPath);
+    }
+    if(FileExists(source))
+    {
+        CopyFile(source.c_str(), target.c_str(), false);
+        return true;
+    }
+    return false;
+}
+//---------------------------------------------------------------------------
+static void AddConfigPackageFile(TStringList *manifest, AnsiString sourceRoot, AnsiString targetRoot, AnsiString relativePath)
+{
+    AnsiString source=FileInfo().PathCombin(sourceRoot, relativePath);
+    AnsiString target=FileInfo().PathCombin(targetRoot, relativePath);
+    if(CopyStateRecordFile(source, target))
+        manifest->Add(relativePath+AnsiString("=OK"));
+    else
+        manifest->Add(relativePath+AnsiString("=MISSING"));
+}
+//---------------------------------------------------------------------------
+static void CaptureStateRecordConfigPackage(AnsiString tempDir)
+{
+    AnsiString packageRoot=FileInfo().PathCombin(tempDir, AnsiString("MachineConfig\\HT172"));
+    FileInfo().EnsureDirectoriesExist(packageRoot);
+
+    TStringList *manifest=new TStringList();
+    try
+    {
+        AnsiString recipeName="";
+        if(fMain!=NULL)
+            recipeName=fMain->cb_WorkFile->Text;
+
+        manifest->Add("[SnapshotConfig]");
+        manifest->Add(AnsiString("SourceRoot=")+HSys.CurrentDir);
+        manifest->Add(AnsiString("CopyRoot=")+AnsiString("MachineConfig\\HT172"));
+        manifest->Add(AnsiString("RecipeName=")+recipeName);
+        manifest->Add(AnsiString("CaptureTime=")+FormatDateTime("yyyy/mm/dd hh:nn:ss", Now()));
+        manifest->Add("");
+        manifest->Add("[Files]");
+
+        if(recipeName!="")
+        {
+            AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, AnsiString("data\\")+recipeName+AnsiString(".ini"));
+            AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, AnsiString("data\\")+recipeName+AnsiString(".ofs"));
+        }
+        else
+        {
+            manifest->Add("data\\<Recipe>.ini=MISSING_RECIPE_NAME");
+            manifest->Add("data\\<Recipe>.ofs=MISSING_RECIPE_NAME");
+        }
+
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\maintance.ini");
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\tech.ini");
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\machine_speed.ini");
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\ComPort.ini");
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\motor_test.ini");
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\lastset.ini");
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\lastdata.ini");
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\Mot_Table.csv");
+        AddConfigPackageFile(manifest, HSys.CurrentDir, packageRoot, "system\\IO_Table.csv");
+
+        manifest->SaveToFile(FileInfo().PathCombin(packageRoot, "ConfigManifest.ini"));
+    }
+    __finally
+    {
+        delete manifest;
+    }
+}
+//---------------------------------------------------------------------------
+static void CaptureStateRecordInputFiles(AnsiString tempDir)
+{
+    AnsiString inputRoot=FileInfo().PathCombin(tempDir, "InputData");
+    FileInfo().EnsureDirectoriesExist(inputRoot);
+
+    TStringList *manifest=new TStringList();
+    try
+    {
+        manifest->Add("[InputData]");
+        if(LoaderModule!=NULL && LoaderModule->SummaryFileName!="")
+        {
+            AnsiString source=FileInfo().PathCombin("D:\\BarcodeSorter", LoaderModule->SummaryFileName);
+            AnsiString relativePath=AnsiString("BarcodeSorter\\")+LoaderModule->SummaryFileName;
+            AnsiString target=FileInfo().PathCombin(inputRoot, relativePath);
+            if(CopyStateRecordFile(source, target))
+                manifest->Add(relativePath+AnsiString("=OK"));
+            else
+                manifest->Add(relativePath+AnsiString("=MISSING"));
+            manifest->Add(AnsiString("LotMapSource=")+source);
+        }
+        else
+        {
+            manifest->Add("BarcodeSorter=<no current SummaryFileName>");
+        }
+
+        if(fAutomation!=NULL && fAutomation->Memo!=NULL)
+        {
+            AnsiString target=FileInfo().PathCombin(inputRoot, "Automation\\AutomationMemo.txt");
+            AnsiString targetPath, targetFile, targetExt;
+            FileInfo().SplitPath(target, targetPath, targetFile, targetExt);
+            FileInfo().EnsureDirectoriesExist(targetPath);
+            fAutomation->Memo->Lines->SaveToFile(target);
+            manifest->Add("Automation\\AutomationMemo.txt=OK");
+            manifest->Add(AnsiString("AutomationLogPath=")+asOLPLogPath);
+        }
+        else
+        {
+            manifest->Add("Automation\\AutomationMemo.txt=NO_FORM");
+        }
+
+        manifest->SaveToFile(FileInfo().PathCombin(inputRoot, "InputManifest.ini"));
+    }
+    __finally
+    {
+        delete manifest;
+    }
+}
+static void CaptureBinDisplayLogTail(AnsiString sourceFile, AnsiString targetDir, AnsiString targetDateName, int iMaxTailLines)
+{
+    AnsiString tailFile=FileInfo().PathCombin(targetDir, AnsiString("BinDisplayLogTail_")+targetDateName+AnsiString(".csv"));
+    AnsiString summaryFile=FileInfo().PathCombin(targetDir, AnsiString("BinDisplayLogSummary_")+targetDateName+AnsiString(".ini"));
+    std::deque<AnsiString> tailLines;
+    AnsiString asHeader="";
+    int iTotalLines=0;
+    int iDataLines=0;
+    int iSendCount=0;
+    int iRecvCount=0;
+    int iTFTAckOKCount=0;
+    int iTFTAckNGCount=0;
+    int iTFTNumberDoneCount=0;
+    int iMagTopCount=0;
+    bool bSourceExists=FileExists(sourceFile);
+
+    if(iMaxTailLines<=0)
+        iMaxTailLines=2000;
+
+    if(bSourceExists)
+    {
+        FILE *fp=fopen(sourceFile.c_str(), "r");
+        if(fp!=NULL)
+        {
+            char cLine[4096];
+            while(fgets(cLine, sizeof(cLine), fp)!=NULL)
+            {
+                AnsiString asLine=cLine;
+                asLine=asLine.TrimRight();
+                iTotalLines++;
+                if(iTotalLines==1 && asLine.Pos("Date") == 1)
+                {
+                    asHeader=asLine;
+                    continue;
+                }
+
+                iDataLines++;
+                if(asLine.Pos(", Send,")>0)
+                    iSendCount++;
+                else if(asLine.Pos(", Recv,")>0)
+                    iRecvCount++;
+                else if(asLine.Pos(", TFTAckOK,")>0)
+                    iTFTAckOKCount++;
+                else if(asLine.Pos(", TFTAckNG,")>0)
+                    iTFTAckNGCount++;
+                else if(asLine.Pos(", TFTNumberDone,")>0)
+                    iTFTNumberDoneCount++;
+                else if(asLine.Pos(", MagTop,")>0)
+                    iMagTopCount++;
+
+                tailLines.push_back(asLine);
+                while((int)tailLines.size()>iMaxTailLines)
+                    tailLines.pop_front();
+            }
+            fclose(fp);
+        }
+    }
+
+    TStringList *tail=new TStringList();
+    try
+    {
+        if(asHeader!="")
+            tail->Add(asHeader);
+        for(std::deque<AnsiString>::iterator it=tailLines.begin(); it!=tailLines.end(); ++it)
+            tail->Add(*it);
+        tail->SaveToFile(tailFile);
+    }
+    __finally
+    {
+        delete tail;
+    }
+
+    TIniFile *ini=new TIniFile(summaryFile);
+    try
+    {
+        ini->WriteString("BinDisplayLog", "SourceFile", sourceFile);
+        ini->WriteBool("BinDisplayLog", "SourceExists", bSourceExists);
+        ini->WriteString("BinDisplayLog", "TailFile", tailFile);
+        ini->WriteInteger("BinDisplayLog", "MaxTailLines", iMaxTailLines);
+        ini->WriteInteger("BinDisplayLog", "TotalLines", iTotalLines);
+        ini->WriteInteger("BinDisplayLog", "DataLines", iDataLines);
+        ini->WriteInteger("BinDisplayLog", "TailDataLines", (int)tailLines.size());
+        ini->WriteInteger("ActionCount", "Send", iSendCount);
+        ini->WriteInteger("ActionCount", "Recv", iRecvCount);
+        ini->WriteInteger("ActionCount", "TFTAckOK", iTFTAckOKCount);
+        ini->WriteInteger("ActionCount", "TFTAckNG", iTFTAckNGCount);
+        ini->WriteInteger("ActionCount", "TFTNumberDone", iTFTNumberDoneCount);
+        ini->WriteInteger("ActionCount", "MagTop", iMagTopCount);
+        ini->WriteString("Note", "FullLogPolicy", "StateRecord stores tail and summary only to avoid oversized zip files.");
+    }
+    __finally
+    {
+        delete ini;
+    }
+}
+//---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 AnsiString cStateRecord::GetTaskName(int moduleIdx, int taskID)
 {
@@ -1082,6 +1303,53 @@ void cStateRecord::CaptureMachineState(AnsiString iniFullPath)
         ini->WriteInteger("System", "RunMode", (int)HSys.Sys.RunMode);
         ini->WriteBool("System", "SystemStart", HSys.Sys.SystemStart);
         ini->WriteInteger("System", "RealDummy", HSys.LastSet.iRealDummy);
+
+        if(fMain!=NULL)
+        {
+            ini->WriteString("LotMap", "RecipeName", fMain->cb_WorkFile->Text);
+            ini->WriteString("LotMap", "LotID", fMain->edLotNo->Text);
+        }
+        ini->WriteInteger("LotMap", "AutoBinSetMode", HSys.FuncT.iT03_AutoBinSet);
+        ini->WriteString("LotMap", "Auto1Info", sLotAuto1Info);
+        ini->WriteString("LotMap", "Auto2Info", sLotAuto2Info);
+        ini->WriteString("LotMap", "Auto3Info", sLotAuto3Info);
+        if(LoaderModule!=NULL)
+            ini->WriteString("LotMap", "SummaryFileName", LoaderModule->SummaryFileName);
+        ini->WriteInteger("LotMap", "RunDataAutoQuantity", tRunData.iAutoQuantity);
+        ini->WriteInteger("LotMap", "RunDataMagQuantity", tRunData.iMagQuantity);
+        ini->WriteInteger("LotMap", "RunDataTotalQuantity", tRunData.GetTotalQuantity());
+
+        int iLotMapTotal=0;
+        int iActiveBinCount=0;
+        AnsiString asBinSummary="";
+        for(int i=0; i<TEST_MAX_BIN; i++)
+        {
+            if(myXML.iTotalBinCount[i]>0)
+            {
+                AnsiString key, item;
+                key.sprintf("Bin%03d", i);
+                ini->WriteInteger("LotMapBinCount", key, myXML.iTotalBinCount[i]);
+                item.sprintf("%d:%d", i, myXML.iTotalBinCount[i]);
+                if(asBinSummary!="")
+                    asBinSummary+=",";
+                asBinSummary+=item;
+                iLotMapTotal+=myXML.iTotalBinCount[i];
+                iActiveBinCount++;
+            }
+        }
+        ini->WriteInteger("LotMap", "ActiveBinCount", iActiveBinCount);
+        ini->WriteInteger("LotMap", "LotMapTotalCount", iLotMapTotal);
+        ini->WriteString("LotMap", "BinCountSummary", asBinSummary);
+
+        ini->WriteString("Automation", "LogPath", asOLPLogPath);
+        ini->WriteBool("Automation", "FormExists", fAutomation!=NULL);
+        if(fAutomation!=NULL && fAutomation->Memo!=NULL)
+        {
+            ini->WriteInteger("Automation", "MemoLineCount", fAutomation->Memo->Lines->Count);
+            ini->WriteBool("Automation", "bReceive", fAutomation->bReceive);
+            ini->WriteBool("Automation", "bReceive2", fAutomation->bReceive2);
+            ini->WriteInteger("Automation", "SocketHandle", fAutomation->iSocketHandle);
+        }
 
         ini->WriteBool("GlobalFlags", "bCleanOut", bCleanOut);
         ini->WriteBool("GlobalFlags", "bNeedLoadTrayToTransfer", bNeedLoadTrayToTransfer);
@@ -1195,6 +1463,8 @@ void cStateRecord::TriggerSnapshot(AnsiString triggerReason)
     ExportTaskHistoryToCSV(FileInfo().PathCombin(tempDir, "TaskHistory.csv"));
     CaptureCurrentTasks(FileInfo().PathCombin(tempDir, "CurrentTasks.txt"));
     CaptureMachineState(FileInfo().PathCombin(tempDir, "MachineState.ini"));
+    CaptureStateRecordConfigPackage(tempDir);
+    CaptureStateRecordInputFiles(tempDir);
 
     if(HSys.BinDisCtrl!=NULL)
         HSys.BinDisCtrl->FlushBinDisplayLog();
@@ -1211,7 +1481,9 @@ void cStateRecord::TriggerSnapshot(AnsiString triggerReason)
 
     AnsiString binSrcDir = AnsiString().sprintf("D:\\HT-172_Log\\BinDisplayLog\\%04d\\%02d", y, mo);
     AnsiString binSrcFile = AnsiString().sprintf("BinDisplayLog_%04d%02d%02d.csv", y, mo, d);
-    CopyFileToFolder(binSrcDir, tempDir, binSrcFile);
+    AnsiString binSrcFullPath = FileInfo().PathCombin(binSrcDir, binSrcFile);
+    AnsiString binDateName = AnsiString().sprintf("%04d%02d%02d", y, mo, d);
+    CaptureBinDisplayLogTail(binSrcFullPath, tempDir, binDateName, 2000);
 
     DoFinish();
 }

@@ -2880,7 +2880,20 @@ void __fastcall TfMain::btnLotStartClick(TObject *Sender)
         }
         else
         {
-            fSetup->AutoBinSet();
+            if(fSetup->AutoBinSet()==false)
+            {
+                bStartCallLot_StartExe=false;
+                RunInfo.LotStart=false;
+                edLotNo->Enabled=true;
+                edWaferLot->Enabled=true;
+                edCusDevice->Enabled=true;
+                edInsertion->Enabled=true;
+                edFlowID->Enabled=true;
+                edOperator->Enabled=true;
+                btnLotStart->Enabled=true;
+                RecordProcess("Lot start aborted: AutoBinSet fail.");
+                return;
+            }
             fSetup->sbUpdateClick(NULL);
         }
         fSetup->OpenWorkFile();

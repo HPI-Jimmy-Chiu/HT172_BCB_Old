@@ -446,7 +446,7 @@ void TfSetup::ClearBinSet(int tag, bool bSetToFile)                             
     }
 }
 //------------------------------------------------------------------------------
-void TfSetup::AutoBinSet()                                                      //Steven 20240627 : 自動設定bin tray
+bool TfSetup::AutoBinSet()                                                      //Steven 20240627 : 自動設定bin tray
 {
     TStringList *sList      =new TStringList();
     sList->Clear();
@@ -483,17 +483,37 @@ void TfSetup::AutoBinSet()                                                      
             if(iBin>0)
                 VecBins.push_back(iBin);
         }
+        if(VecBins.size()==0)
+        {
+            int iActiveBinCount=0;
+            int iLotTotalCount=0;
+            for(int i=0; i<TEST_MAX_BIN; i++)
+            {
+                if(myXML.iTotalBinCount[i]>0)
+                {
+                    iActiveBinCount++;
+                    iLotTotalCount+=myXML.iTotalBinCount[i];
+                }
+            }
+            sLog.sprintf("AutoSetBin Fail: Auto%d bin list empty. Lot=%s ActiveBin=%d LotTotal=%d Auto1=%s Auto2=%s Auto3=%s", HSys.FuncT.iT03_AutoBinSet-1, fMain->edLotNo->Text.c_str(), iActiveBinCount, iLotTotalCount, sLotAuto1Info.c_str(), sLotAuto2Info.c_str(), sLotAuto3Info.c_str());
+            RecordProcess(sLog);
+            ShowMyMessage("AutoSetBin fail: Auto bin list empty. Please check lot map Auto1/2/3.");
+            sList->Clear();
+            delete sList;
+            return false;
+        }
     }
     else
     {
         sList->Clear();
         delete sList;
         ShowMyMessage("AutoBinSet error!!");
-        return;
+        return false;
     }
     AutoBinSet(VecBins);
     sList->Clear();
     delete sList;
+    return true;
 }
 //------------------------------------------------------------------------------
 void TfSetup::AutoBinSet(const std::vector<int> &vbins)                                               //Steven 20240627 : 自動設定bin tray
