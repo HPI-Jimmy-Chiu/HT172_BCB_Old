@@ -430,7 +430,7 @@ __published:    // IDE-managed Components
     TBtnPanel *OffPanel;
     TPanel *palAllOn;
     TPanel *palAllOff;
-    TPanel *Panel16;
+    TPanel *palAllClose;
     TBtnPanel *bplC_Loader_CCDStop;
     TBtnPanel *bplSwACLoaderCCW;
     TMyLed *ledC_Loader_CCDStop_On;

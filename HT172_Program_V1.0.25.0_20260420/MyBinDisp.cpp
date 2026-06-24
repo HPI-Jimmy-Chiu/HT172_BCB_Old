@@ -57,7 +57,7 @@ TMyBinDispCtrl::TMyBinDispCtrl()
     bHasUnit=false;
     BinDispRecv=false;
     ComPort=4;
-    ComParity=None;
+    ComParity=cpNone;
 
     iDelaySec=5;
     InitialOK=false;
@@ -111,7 +111,7 @@ unsigned char TMyBinDispCtrl::T_ASXII2HEX_Mac(unsigned char ascii2hex)
         return 0;
     return(T_ASXII2HEX[ascii2hex-'0']);
 }
-void  TMyBinDispCtrl::SetComParity(TParity Parity)  {ComParity=Parity;}                 // 設定顯示器群組是利用那一個Parity
+void  TMyBinDispCtrl::SetComParity(TCommParity Parity)  {ComParity=Parity;}                 // 設定顯示器群組是利用那一個Parity
 bool  TMyBinDispCtrl::UnitHasInstall(int Index)     {return bHasUnitArray[Index];}      // 確認該顯示器使是否有啟用
 void  TMyBinDispCtrl::CloseUnit(int Index)          {bHasUnitArray[Index]=false;}       // 關閉該顯示器
 void  TMyBinDispCtrl::OpenUnit(int Index)           {bHasUnitArray[Index]=true;}        // 開啟該顯示器
@@ -1631,7 +1631,7 @@ bool TMyBinDispHT9046::DoStartGetStatus()
     return false;
 }
 //------------------------------------------------------------------------------
-bool TMyBinDispCtrl::StartComport(TComm *Comm,AnsiString port)
+bool TMyBinDispCtrl::StartComport(TMyComm *Comm,AnsiString port)
 {
     bool bret=false;
     AnsiString CN="", Str="";
@@ -1666,7 +1666,7 @@ bool TMyBinDispCtrl::StartComport(TComm *Comm,AnsiString port)
     return bret;
 }
 //---------------------------------------------------------------------------
-bool TMyBinDispCtrl::StopComport(TComm *Comm,AnsiString port)
+bool TMyBinDispCtrl::StopComport(TMyComm *Comm,AnsiString port)
 {
     bool bret=false;
     AnsiString CN="", Str="";
@@ -1876,7 +1876,14 @@ bool TMyBinDispCtrl::DoStartSetBinTFT()
             else if(BinDisDelay.Off())
             {
                 iErrCount[iDisplayIndex]++;
+                if(iErrCount[iDisplayIndex]>5)                                  //AI 20260623 : flag this unit as display error
+                {
+                    iRusStatus=4;
+                    bHasError[iDisplayIndex]=true;
+                }
+                Addr++;                                                         //AI 20260623 : advance on timeout so one dead unit (Auto1) never blocks the rest
                 Task=100;
+                break;
             }
 
             if(Addr>=eAuto20+1)                                            //JerryYang 20230515 : 避免超出陣列

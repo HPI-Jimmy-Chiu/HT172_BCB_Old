@@ -1,6 +1,6 @@
 object fAutomation: TfAutomation
-  Left = 2948
-  Top = 603
+  Left = 639
+  Top = 570
   Width = 884
   Height = 610
   Caption = 'Automation'

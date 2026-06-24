@@ -107,6 +107,7 @@ public:     // User declarations
     bool bReceive;
     bool bReceive2;
     int iSocketHandle;  //Sam 20200727 : 修正連線問題
+    TCustomWinSocket *pLastServerSocket;                                      //AI(HT172-Maintainer) 20260529 : keep read socket for reply fallback
     bool bReceiveHasData;       // 2011.09.05 , Joye , OLP
     TList *CommandBuffer;
     TStringList *CommandClientReplyBuffer;     //Sam 20200813 : Client 收到資料回傳若遇到斷線將資料丟到 Buffer

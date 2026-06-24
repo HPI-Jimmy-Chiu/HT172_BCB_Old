@@ -4,6 +4,7 @@
 #define ComPortH
 //---------------------------------------------------------------------------
 #include "SPComm.hpp"
+#include "MyComm.h"
 #include <Buttons.hpp>
 #include <Classes.hpp>
 #include <ComCtrls.hpp>
@@ -124,8 +125,6 @@ __published:    // IDE-managed Components
     TEdit *Edit2;
     TMemo *memoStepMot;
     TComm *StepTrayComm;
-    TComm *commBinDisStore;
-    TComm *commBinDisMag;
     TLabel *Label21;
     TComboBox *cbMagBinComm;
     TPageControl *PageControl1;
@@ -189,6 +188,8 @@ private:    // User declarations
 
 public:     // User declarations
     __fastcall TfComPort(TComponent* Owner);
+    TMyComm *commBinDisStore;   // Phase1: Bin display (TFT) - self-built TMyComm
+    TMyComm *commBinDisMag;     // Phase1: MGZ Bin display (TFT)
     void __fastcall SaveWorkFile();
     void __fastcall OpenWorkFile();
 

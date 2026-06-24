@@ -20,7 +20,7 @@
       ..\Obj\uHGemHT172.obj ..\Obj\aLoader.obj ..\Obj\aSortArm.obj 
       ..\Obj\aTrayArm.obj ..\Obj\aMagArm.obj ..\Obj\MyStringList.obj 
       ..\Obj\aMagazine.obj ..\Obj\MyBinDisp.obj ..\Obj\Barcode.obj 
-      ..\Obj\ModbusTCPClient.obj ..\Obj\MyPLC_IO_Modbus.obj ..\Obj\ComPort.obj 
+      ..\Obj\ModbusTCPClient.obj ..\Obj\MyPLC_IO_Modbus.obj ..\Obj\ComPort.obj ..\Obj\MyComm.obj 
       ..\Obj\uPadInterface.obj ..\Obj\TrayStepMotor.obj ..\Obj\TextProcess.obj 
       ..\Obj\aseTest.obj ..\Obj\myMN200motor.obj ..\Obj\DecodeXML.obj 
       ..\Obj\FTPClient.obj ..\Obj\TasmInfo.obj ..\Obj\uTimeTool.obj 
@@ -156,6 +156,7 @@
       <FILE FILENAME="ModbusTCPClient.cpp" FORMNAME="" UNITNAME="ModbusTCPClient" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="MyPLC_IO_Modbus.cpp" FORMNAME="" UNITNAME="MyPLC_IO_Modbus" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="ComPort.cpp" FORMNAME="fComPort" UNITNAME="ComPort" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyComm.cpp" FORMNAME="" UNITNAME="MyComm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="uPadInterface.cpp" FORMNAME="fPadInterface" UNITNAME="uPadInterface" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="TrayStepMotor.cpp" FORMNAME="dmTrayMotor" UNITNAME="TrayStepMotor" CONTAINERID="CCompiler" DESIGNCLASS="TDataModule" LOCALCOMMAND=""/>
       <FILE FILENAME="TextProcess.cpp" FORMNAME="" UNITNAME="TextProcess" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
@@ -197,7 +198,7 @@ AutoIncBuild=0
 MajorVer=1
 MinorVer=0
 Release=25
-Build=19
+Build=20
 Debug=0
 PreRelease=0
 Special=0
@@ -209,7 +210,7 @@ CodePage=950
 [Version Info Keys]
 CompanyName=HonPrec
 FileDescription=
-FileVersion=1.0.25.19
+FileVersion=1.0.25.20
 InternalName=
 LegalCopyright=HonPrec
 LegalTrademarks=
