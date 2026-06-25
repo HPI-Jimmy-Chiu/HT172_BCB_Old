@@ -57,7 +57,7 @@ TMyBinDispCtrl::TMyBinDispCtrl()
     bHasUnit=false;
     BinDispRecv=false;
     ComPort=4;
-    ComParity=cpNone;
+    ComParity=::cpNone;
 
     iDelaySec=5;
     InitialOK=false;
@@ -1794,12 +1794,14 @@ bool TMyBinDispCtrl::DoInitialStatusTFT()
                 iErrCount[Addr]++;
                 Task=100;
             }
-            if(iErrCount[Addr]>5)
+            if(iErrCount[Addr]>5)                                           //AI(ht172-binfix) 20260625: skip this unit instead of aborting the whole scan
             {
-                iRusStatus=0;
+                iRusStatus=4;                                               // flag this unit as display error
                 bHasError[Addr]=true;
                 iErrCount[Addr]=0;
-                Task=9999;
+                Addr++;                                                     // advance so one dead/slow unit never blocks the rest
+                iFuncNum=0;
+                Task=50;
             }
             break;
         case 9999:
@@ -1876,12 +1878,12 @@ bool TMyBinDispCtrl::DoStartSetBinTFT()
             else if(BinDisDelay.Off())
             {
                 iErrCount[iDisplayIndex]++;
-                if(iErrCount[iDisplayIndex]>5)                                  //AI 20260623 : flag this unit as display error
+                if(iErrCount[iDisplayIndex]>5)                                  //AI(ht172-binfix) 20260623: flag this unit as display error
                 {
                     iRusStatus=4;
                     bHasError[iDisplayIndex]=true;
                 }
-                Addr++;                                                         //AI 20260623 : advance on timeout so one dead unit (Auto1) never blocks the rest
+                Addr++;                                                         //AI(ht172-binfix) 20260623: advance on timeout so one dead unit (Auto1) never blocks the rest
                 Task=100;
                 break;
             }
