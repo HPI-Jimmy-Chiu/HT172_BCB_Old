@@ -693,9 +693,46 @@ void cStateRecord::Clear()
     //
 }
 //---------------------------------------------------------------------------
+static void WriteStateRecordProgress(AnsiString saveFolder, AnsiString asStep, AnsiString asDetail)
+{
+    AnsiString progressFile=FileInfo().PathCombin(saveFolder, "StateRecordProgress.ini");
+    TIniFile *ini=new TIniFile(progressFile);
+    try
+    {
+        ini->WriteString("Progress", "Time", FormatDateTime("yyyy/mm/dd hh:nn:ss", Now()));
+        ini->WriteString("Progress", "Step", asStep);
+        ini->WriteString("Progress", "Detail", asDetail);
+    }
+    __finally
+    {
+        delete ini;
+    }
+}
+//---------------------------------------------------------------------------
 int cStateRecord::DoShellExecute(AnsiString cmd)
 {
-    return (int)ShellExecute(NULL, "open", "cmd.exe", ("/C " + cmd).c_str(), NULL, SW_HIDE);
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+    DWORD exitCode=1;
+    AnsiString asCmd=AnsiString("cmd.exe /C ")+cmd;
+
+    ZeroMemory(&si, sizeof(si));
+    ZeroMemory(&pi, sizeof(pi));
+    si.cb=sizeof(si);
+    si.dwFlags=STARTF_USESHOWWINDOW;
+    si.wShowWindow=SW_HIDE;
+
+    if(CreateProcess(NULL, asCmd.c_str(), NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi)==false)
+        return 0;
+
+    WaitForSingleObject(pi.hProcess, INFINITE);
+    GetExitCodeProcess(pi.hProcess, &exitCode);
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+
+    if(exitCode==0)
+        return 33;
+    return (int)exitCode;
 }
 //---------------------------------------------------------------------------
 void cStateRecord::SetFolder(AnsiString sFolder)
@@ -754,7 +791,7 @@ bool cStateRecord::CompressWithExternalTool(AnsiString folderToCompress, AnsiStr
     }
     if(bZipExist)
     {
-        AnsiString cmd=AnsiString().sprintf("%s a -tzip \"%s.zip\" \"%s\"", sTarget, folderToCompress, folderToCompress);
+        AnsiString cmd=AnsiString().sprintf("\"%s\" a -tzip \"%s.zip\" \"%s\"", sTarget.c_str(), folderToCompress.c_str(), folderToCompress.c_str());
         int result=DoShellExecute(cmd);
         bret=(result > 32);
     }
@@ -764,9 +801,18 @@ bool cStateRecord::CompressWithExternalTool(AnsiString folderToCompress, AnsiStr
 void cStateRecord::DoFinish()
 {
     AnsiString sTarget=GetTempZipFolder();
-    CompressWithExternalTool(sTarget,sFileName);
-    Sleep(1000);
-    FileInfo().DeleteFolder(sTarget);
+    WriteStateRecordProgress(saveFolder, "CompressStart", sTarget);
+    bool bZipOK=CompressWithExternalTool(sTarget,sFileName);
+    if(bZipOK)
+    {
+        WriteStateRecordProgress(saveFolder, "CompressOK", sTarget+AnsiString(".zip"));
+        FileInfo().DeleteFolder(sTarget);
+        WriteStateRecordProgress(saveFolder, "Done", sTarget+AnsiString(".zip"));
+    }
+    else
+    {
+        WriteStateRecordProgress(saveFolder, "CompressFailKeepTemp", sTarget);
+    }
 }
 //---------------------------------------------------------------------------
 void cStateRecord::InitialThreadRecord()
@@ -1049,6 +1095,61 @@ static void CaptureStateRecordConfigPackage(AnsiString tempDir)
     }
 }
 //---------------------------------------------------------------------------
+static bool CaptureStateRecordBarcodeSorterFile(TStringList *manifest, AnsiString inputRoot, AnsiString fileName, AnsiString sourceKey)
+{
+    if(fileName=="")
+        return false;
+
+    AnsiString source=FileInfo().PathCombin("D:\\BarcodeSorter", fileName);
+    AnsiString relativePath=AnsiString("BarcodeSorter\\")+fileName;
+    AnsiString target=FileInfo().PathCombin(inputRoot, relativePath);
+    bool bOK=CopyStateRecordFile(source, target);
+    if(bOK)
+        manifest->Add(relativePath+AnsiString("=OK"));
+    else
+        manifest->Add(relativePath+AnsiString("=MISSING"));
+    manifest->Add(sourceKey+AnsiString("=")+source);
+    return bOK;
+}
+//---------------------------------------------------------------------------
+static int CaptureStateRecordBarcodeSorterLotFiles(TStringList *manifest, AnsiString inputRoot, AnsiString lotID, AnsiString skipFileName)
+{
+    int iCount=0;
+    AnsiString pattern=AnsiString("D:\\BarcodeSorter\\*")+lotID+AnsiString("*.log");
+    manifest->Add(AnsiString("BarcodeSorterLotPattern=")+pattern);
+
+    if(lotID=="")
+    {
+        manifest->Add("BarcodeSorterLotID=<empty>");
+        manifest->Add("BarcodeSorterLotMatchCount=0");
+        return 0;
+    }
+
+    TSearchRec sr;
+    int iRet=FindFirst(pattern, faAnyFile, sr);
+    if(iRet!=0)
+    {
+        manifest->Add("BarcodeSorterLotMatchCount=0");
+        return 0;
+    }
+
+    do
+    {
+        if((sr.Attr & faDirectory)==0)
+        {
+            if(skipFileName!="" && sr.Name==skipFileName)
+                continue;
+            iCount++;
+            CaptureStateRecordBarcodeSorterFile(manifest, inputRoot, sr.Name, AnsiString("LotMapSourceByLotID")+IntToStr(iCount));
+        }
+    }
+    while(FindNext(sr)==0);
+
+    FindClose(sr);
+    manifest->Add(AnsiString("BarcodeSorterLotMatchCount=")+IntToStr(iCount));
+    return iCount;
+}
+//---------------------------------------------------------------------------
 static void CaptureStateRecordInputFiles(AnsiString tempDir)
 {
     AnsiString inputRoot=FileInfo().PathCombin(tempDir, "InputData");
@@ -1058,21 +1159,25 @@ static void CaptureStateRecordInputFiles(AnsiString tempDir)
     try
     {
         manifest->Add("[InputData]");
-        if(LoaderModule!=NULL && LoaderModule->SummaryFileName!="")
+
+        AnsiString summaryFileName="";
+        if(LoaderModule!=NULL)
+            summaryFileName=LoaderModule->SummaryFileName;
+
+        if(summaryFileName!="")
         {
-            AnsiString source=FileInfo().PathCombin("D:\\BarcodeSorter", LoaderModule->SummaryFileName);
-            AnsiString relativePath=AnsiString("BarcodeSorter\\")+LoaderModule->SummaryFileName;
-            AnsiString target=FileInfo().PathCombin(inputRoot, relativePath);
-            if(CopyStateRecordFile(source, target))
-                manifest->Add(relativePath+AnsiString("=OK"));
-            else
-                manifest->Add(relativePath+AnsiString("=MISSING"));
-            manifest->Add(AnsiString("LotMapSource=")+source);
+            CaptureStateRecordBarcodeSorterFile(manifest, inputRoot, summaryFileName, "LotMapSource");
+            manifest->Add(AnsiString("SummaryFileName=")+summaryFileName);
         }
         else
         {
             manifest->Add("BarcodeSorter=<no current SummaryFileName>");
         }
+
+        AnsiString lotID="";
+        if(fMain!=NULL)
+            lotID=fMain->edLotNo->Text;
+        CaptureStateRecordBarcodeSorterLotFiles(manifest, inputRoot, lotID, summaryFileName); //AI(HT172-Maintainer) 20260529 : capture the actual PTI/JHT lot map by current LotID
 
         if(fAutomation!=NULL && fAutomation->Memo!=NULL)
         {
@@ -1096,6 +1201,7 @@ static void CaptureStateRecordInputFiles(AnsiString tempDir)
         delete manifest;
     }
 }
+//---------------------------------------------------------------------------
 static void CaptureBinDisplayLogTail(AnsiString sourceFile, AnsiString targetDir, AnsiString targetDateName, int iMaxTailLines)
 {
     AnsiString tailFile=FileInfo().PathCombin(targetDir, AnsiString("BinDisplayLogTail_")+targetDateName+AnsiString(".csv"));
@@ -1445,6 +1551,7 @@ void cStateRecord::TriggerSnapshot(AnsiString triggerReason)
     AnsiString stamp = AnsiString().sprintf("%04d-%02d-%02d %02d_%02d_%02d", y, mo, d, h, mi, s);
     SetZipFileName(stamp);
     AnsiString tempDir = GetTempZipFolder();
+    WriteStateRecordProgress(saveFolder, "Start", tempDir);
 
     AnsiString snapPath = FileInfo().PathCombin(tempDir, "Snapshot.ini");
     TIniFile* ini = new TIniFile(snapPath);
@@ -1460,12 +1567,18 @@ void cStateRecord::TriggerSnapshot(AnsiString triggerReason)
         delete ini;
     }
 
+    WriteStateRecordProgress(saveFolder, "ExportTaskHistory", tempDir);
     ExportTaskHistoryToCSV(FileInfo().PathCombin(tempDir, "TaskHistory.csv"));
+    WriteStateRecordProgress(saveFolder, "CaptureCurrentTasks", tempDir);
     CaptureCurrentTasks(FileInfo().PathCombin(tempDir, "CurrentTasks.txt"));
+    WriteStateRecordProgress(saveFolder, "CaptureMachineState", tempDir);
     CaptureMachineState(FileInfo().PathCombin(tempDir, "MachineState.ini"));
+    WriteStateRecordProgress(saveFolder, "CaptureConfigPackage", tempDir);
     CaptureStateRecordConfigPackage(tempDir);
+    WriteStateRecordProgress(saveFolder, "CaptureInputFiles", tempDir);
     CaptureStateRecordInputFiles(tempDir);
 
+    WriteStateRecordProgress(saveFolder, "FlushBinDisplayLog", tempDir);
     if(HSys.BinDisCtrl!=NULL)
         HSys.BinDisCtrl->FlushBinDisplayLog();
     if(HSys.BinDisCtrlMag!=NULL)
@@ -1475,10 +1588,12 @@ void cStateRecord::TriggerSnapshot(AnsiString triggerReason)
     if(HSys.BinDisCtrlMagTFT!=NULL)
         HSys.BinDisCtrlMagTFT->FlushBinDisplayLog();
 
+    WriteStateRecordProgress(saveFolder, "CopyEventLog", tempDir);
     AnsiString srcDir = AnsiString().sprintf("D:\\HT-172_Log\\EventLog\\%04d_%02d", y, mo);
     AnsiString srcFile = AnsiString().sprintf("%s_%04d_%02d_%2d.csv", asHandlerID.c_str(), y, mo, d);
     CopyFileToFolder(srcDir, tempDir, srcFile);
 
+    WriteStateRecordProgress(saveFolder, "CaptureBinDisplayLogTail", tempDir);
     AnsiString binSrcDir = AnsiString().sprintf("D:\\HT-172_Log\\BinDisplayLog\\%04d\\%02d", y, mo);
     AnsiString binSrcFile = AnsiString().sprintf("BinDisplayLog_%04d%02d%02d.csv", y, mo, d);
     AnsiString binSrcFullPath = FileInfo().PathCombin(binSrcDir, binSrcFile);

@@ -2333,10 +2333,10 @@ object fiosetview: Tfiosetview
       Top = 41
       Width = 903
       Height = 778
-      ActivePage = tsIO1
+      ActivePage = tsIO5
       Align = alClient
       Style = tsButtons
-      TabIndex = 1
+      TabIndex = 5
       TabOrder = 1
       TabWidth = 80
       object tsIO0: TTabSheet
@@ -14198,7 +14198,7 @@ object fiosetview: Tfiosetview
             ParentFont = False
             TabOrder = 2
           end
-          object Panel16: TPanel
+          object palAllClose: TPanel
             Left = 62
             Top = 82
             Width = 48

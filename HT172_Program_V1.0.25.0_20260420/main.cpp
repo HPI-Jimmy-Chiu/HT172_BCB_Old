@@ -1543,8 +1543,14 @@ void __fastcall TfMain::StoreHangupData()                                       
 void __fastcall TfMain::sbStoreHangupClick(TObject *Sender)                     // button store hangup //
 {
 //    StoreHangupData();
-    sr->TriggerSnapshot("Manual");                                              //AI(HT172-Maintainer) 20260420 : full snapshot zip
-    sbStoreHangup->Down=false;
+    __try
+    {
+        sr->TriggerSnapshot("Manual");                                          //AI(HT172-Maintainer) 20260420 : full snapshot zip
+    }
+    __finally
+    {
+        sbStoreHangup->Down=false;
+    }
 }
 //==============================================================================
 void __fastcall TfMain::Timer2Timer(TObject *Sender)                            // ben add 20110712 //
@@ -2825,10 +2831,14 @@ void __fastcall TfMain::btnLotStartClick(TObject *Sender)
 
             for(IterTrayMapList=mapTrayMapList.begin(); IterTrayMapList!=mapTrayMapList.end(); IterTrayMapList++)
             {
+                if(Memo1->Lines->Count>=50)   //AI(ht172-memo1cap) 20260617: cap tray-map memo to stop lastset.ini bloat (was up to ~1.26M lines/72MB). Keep first 50 lines.
+                    break;
                 Memo1->Lines->Add(IterTrayMapList->second.TRAY_ID);
 
                 for(int R=0; R<30; R++)
                 {
+                    if(Memo1->Lines->Count>=50)   //AI(ht172-memo1cap) 20260617: keep first 50 lines only
+                        break;
                     str="";
                     for(int C=0; C<20; C++)
                     {
@@ -3422,7 +3432,7 @@ void __fastcall TfMain::tmrDownCCDTriggerTimer(TObject *Sender)
                         continue;
                     }
                     sTempChi=AnsiString().sprintf("%s 異常位置:%s,  請確認Bin顯示器的狀態!", HSys.BinDisCtrlTFT->GetRunStatus(), sTempChi);
-                    ShowMyMessage(sTempChi);
+                    //AI(ht172-binfix) 20260617: TFT bin-display comm error must NOT stop production (intermittent bad frames); removed ShowMyMessage (DecStopAllMotor+modal). Non-blocking: recover via ResetBinFlow+SerErrNow below.
                     HSys.BinDisCtrlTFT->ResetBinFlow();
                     HSys.BinDisCtrlTFT->SerErrNow(i,false);
                 }
@@ -3437,7 +3447,7 @@ void __fastcall TfMain::tmrDownCCDTriggerTimer(TObject *Sender)
                     AnsiString sTempChi="";
                     sTempChi=AnsiString().sprintf("Mag %d",(i+1));
                     sTempChi=AnsiString().sprintf("%s 異常位置:%s,  請確認Bin顯示器的狀態!", HSys.BinDisCtrlMagTFT->GetRunStatus(), sTempChi);
-                    ShowMyMessage(sTempChi);
+                    //AI(ht172-binfix) 20260617: TFT bin-display comm error must NOT stop production (intermittent bad frames); removed ShowMyMessage (DecStopAllMotor+modal). Non-blocking: recover via ResetBinFlow+SerErrNow below.
                     HSys.BinDisCtrlMagTFT->ResetBinFlow();
                     HSys.BinDisCtrlMagTFT->SerErrNow(i,false);
                 }
@@ -3466,7 +3476,7 @@ void __fastcall TfMain::tmrDownCCDTriggerTimer(TObject *Sender)
                         sTempChi=AnsiString().sprintf("Mag %d",(i+1-eBinDispTotal));
                     }
                     sTempChi=AnsiString().sprintf("%s 異常位置:%s,  請確認Bin顯示器的狀態!", HSys.BinDisCtrlTFT->GetRunStatus(), sTempChi);
-                    ShowMyMessage(sTempChi);
+                    //AI(ht172-binfix) 20260617: TFT bin-display comm error must NOT stop production (intermittent bad frames); removed ShowMyMessage (DecStopAllMotor+modal). Non-blocking: recover via ResetBinFlow+SerErrNow below.
                     HSys.BinDisCtrlTFT->ResetBinFlow();
                     HSys.BinDisCtrlTFT->SerErrNow(i,false);
                 }

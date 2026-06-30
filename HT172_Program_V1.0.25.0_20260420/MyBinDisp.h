@@ -5,6 +5,7 @@
 
 #include <Classes.hpp>
 #include "SPComm.hpp"
+#include "MyComm.h"
 #include "MyStringList.h"
 #include <ExtCtrls.hpp>
 #define Bin_MAX_NUM 23
@@ -110,10 +111,10 @@ public:
     TMyBinDispCtrl();
     ~TMyBinDispCtrl();
     AnsiString Alias[Bin_MAX_NUM];
-    TComm  *CommBin;
+    TMyComm  *CommBin;
     void ProcessStopStart(bool Value)  ;// 啟動或停止跳號
     void SetComPort(AnsiString port)   ;// 設定顯示器群組是利用那一個COM PORT
-    void SetComParity(TParity Parity)  ;// 設定顯示器群組是利用那一個Parity
+    void SetComParity(TCommParity Parity)  ;// 設定顯示器群組是利用那一個Parity
     bool UnitHasInstall(int Index)     ;// 確認該顯示器使是否有啟用
     void CloseUnit(int Index)          ;// 關閉該顯示器
     void OpenUnit(int Index)           ;// 開啟該顯示器
@@ -127,7 +128,7 @@ public:
     AnsiString GetRunStatus()          ;// 回傳目前在執行的動作
     AnsiString GetComPort(){return ComPort;}
     void __fastcall CommBinReceiveData(TObject *Sender, Pointer Buffer, WORD BufferLength);
-    TParity ComParity;                                  // 顯示器通訊之 Parity
+    TCommParity ComParity;                                  // 顯示器通訊之 Parity
     void InstalledUnit(int Index);                         // 設定address=Index 的顯示器是有存在的
     void WriteTargetBin(int Index, int *bin, int color);   // 將address=Index顯示器設定文字與顏色
     void WriteTargetBin(int ibin);
@@ -150,8 +151,8 @@ public:
     void Spin();
     void SpinTFT();
     void SpinTFTInitialOnly();
-    bool StartComport(TComm *Comm,AnsiString port);
-    bool StopComport(TComm *Comm,AnsiString port);
+    bool StartComport(TMyComm *Comm,AnsiString port);
+    bool StopComport(TMyComm *Comm,AnsiString port);
     bool DoInitialStatusTFT();
     bool DoStartSetBinTFT();
     void SetUsedBinNumber(int iNum);

@@ -19,6 +19,32 @@ __fastcall TfComPort::TfComPort(TComponent* Owner)
     : TForm(Owner)
 {
     bShow=false;
+
+    // Phase 1: Bin display (TFT) now uses the self-built TMyComm instead of the
+    // closed-source SPComm. These were .dfm-streamed TComm objects; they are now
+    // created at runtime. Config mirrors the old .dfm (9600/None/8/1). BaudRate
+    // MUST be set here - the rest of the code never set it (it relied on .dfm).
+    commBinDisStore = new TMyComm(this);
+    commBinDisStore->Tag         = 1;
+    commBinDisStore->BaudRate    = 9600;
+    commBinDisStore->ByteSize    = cbs8;
+    commBinDisStore->StopBits    = csb1;
+    commBinDisStore->ParityCheck = false;
+    commBinDisStore->Parity      = cpNone;
+    commBinDisStore->SyncReceive = true;
+    commBinDisStore->EnableLog   = true;
+    commBinDisStore->LogFileName = "D:\\HT-172_Log\\BinDispComm_Store.log";
+
+    commBinDisMag = new TMyComm(this);
+    commBinDisMag->Tag         = 1;
+    commBinDisMag->BaudRate    = 9600;
+    commBinDisMag->ByteSize    = cbs8;
+    commBinDisMag->StopBits    = csb1;
+    commBinDisMag->ParityCheck = false;
+    commBinDisMag->Parity      = cpNone;
+    commBinDisMag->SyncReceive = true;
+    commBinDisMag->EnableLog   = true;
+    commBinDisMag->LogFileName = "D:\\HT-172_Log\\BinDispComm_Mag.log";
 }
 //------------------------------------------------------------------------------
 void __fastcall TfComPort::FormDestroy(TObject *Sender)

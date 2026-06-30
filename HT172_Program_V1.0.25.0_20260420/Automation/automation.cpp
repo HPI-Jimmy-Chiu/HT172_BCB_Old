@@ -118,6 +118,7 @@ __fastcall TfAutomation::TfAutomation(TComponent* Owner)
         bReceive=false;
         bReceive2=false;
         iSocketHandle=0;    //Sam 20200727 : 修正連線問題
+        pLastServerSocket=NULL;                                               //AI(HT172-Maintainer) 20260529 : reset reply fallback socket
 
         bReceiveHasData = false;    // 2011.09.05 , Joye , OLP
         bOneCycle=false;
@@ -284,6 +285,7 @@ void __fastcall TfAutomation::OLPServerClientConnect(TObject *Sender,
     AnsiString sLog="";
     int iConnectCount=(int)(OLPServer->Socket->ActiveConnections);              //Ifor 20170517 (Steven) add OLP Server 若連線數 > 1 重置 Server
 
+    pLastServerSocket=Socket;                                                //AI(HT172-Maintainer) 20260529 : keep current client socket for reply fallback
     if(CUSTOMER_CODE==CC_PTI)//Sam 20200826 : PTI 允許多重連線
     {
         OnLine->Enabled=true;
@@ -314,6 +316,8 @@ void __fastcall TfAutomation::OLPServerClientConnect(TObject *Sender,
 void __fastcall TfAutomation::OLPServerClientDisconnect(TObject *Sender,
       TCustomWinSocket *Socket)
 {
+    if(pLastServerSocket==Socket)
+        pLastServerSocket=NULL;                                              //AI(HT172-Maintainer) 20260529 : clear disconnected reply fallback socket
     OnLine->Enabled=false;
     ShowOLPState(0);   // 2009.12.02 , Joye
 }
@@ -352,6 +356,7 @@ void __fastcall TfAutomation::OLPServerClientRead(TObject *Sender,
     //接收字串
     ReceiveString+=Socket->ReceiveText();   //Sam 20200727 : 修正連線問題
     iSocketHandle=Socket->SocketHandle ;
+    pLastServerSocket=Socket;                                                //AI(HT172-Maintainer) 20260529 : reply to the socket that delivered this frame
     //尋找STX
     StartPos=ReceiveString.Pos(STX);
     //尋找ETX
@@ -847,6 +852,16 @@ void __fastcall TfAutomation::SendClient(AnsiString S, AnsiString S2,int iHandle
     }
     else
     {
+        if(pLastServerSocket!=NULL && pLastServerSocket->SocketHandle==iHandle && pLastServerSocket->Connected)
+        {
+            pLastServerSocket->SendBuf(S.c_str(), S.Length());
+            ShowCharHex(S);
+            ShowRecord(WRITE, S2,pLastServerSocket->SocketHandle);
+            sLog.sprintf("OLP reply sent by read socket fallback. iHandle=%d, iSocketHandle=%d, iConnectCount=%d", iHandle, iSocketHandle, iConnectCount);
+            RecordProcess(sLog);                                              //AI(HT172-Maintainer) 20260529 : reply even when ActiveConnections is stale
+            return;
+        }
+
         ShowRecord(WRITE, S2,iHandle);
         CommandClientReplyBuffer->Add(S);
         sLog.sprintf("OLP Wait client connect, iHandle=%d, iSocketHandle=%d, iConnectCount=%d", iHandle, iSocketHandle, iConnectCount);

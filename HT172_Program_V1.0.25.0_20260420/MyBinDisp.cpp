@@ -57,7 +57,7 @@ TMyBinDispCtrl::TMyBinDispCtrl()
     bHasUnit=false;
     BinDispRecv=false;
     ComPort=4;
-    ComParity=None;
+    ComParity=::cpNone;
 
     iDelaySec=5;
     InitialOK=false;
@@ -111,7 +111,7 @@ unsigned char TMyBinDispCtrl::T_ASXII2HEX_Mac(unsigned char ascii2hex)
         return 0;
     return(T_ASXII2HEX[ascii2hex-'0']);
 }
-void  TMyBinDispCtrl::SetComParity(TParity Parity)  {ComParity=Parity;}                 // 設定顯示器群組是利用那一個Parity
+void  TMyBinDispCtrl::SetComParity(TCommParity Parity)  {ComParity=Parity;}                 // 設定顯示器群組是利用那一個Parity
 bool  TMyBinDispCtrl::UnitHasInstall(int Index)     {return bHasUnitArray[Index];}      // 確認該顯示器使是否有啟用
 void  TMyBinDispCtrl::CloseUnit(int Index)          {bHasUnitArray[Index]=false;}       // 關閉該顯示器
 void  TMyBinDispCtrl::OpenUnit(int Index)           {bHasUnitArray[Index]=true;}        // 開啟該顯示器
@@ -1631,7 +1631,7 @@ bool TMyBinDispHT9046::DoStartGetStatus()
     return false;
 }
 //------------------------------------------------------------------------------
-bool TMyBinDispCtrl::StartComport(TComm *Comm,AnsiString port)
+bool TMyBinDispCtrl::StartComport(TMyComm *Comm,AnsiString port)
 {
     bool bret=false;
     AnsiString CN="", Str="";
@@ -1666,7 +1666,7 @@ bool TMyBinDispCtrl::StartComport(TComm *Comm,AnsiString port)
     return bret;
 }
 //---------------------------------------------------------------------------
-bool TMyBinDispCtrl::StopComport(TComm *Comm,AnsiString port)
+bool TMyBinDispCtrl::StopComport(TMyComm *Comm,AnsiString port)
 {
     bool bret=false;
     AnsiString CN="", Str="";
@@ -1794,12 +1794,14 @@ bool TMyBinDispCtrl::DoInitialStatusTFT()
                 iErrCount[Addr]++;
                 Task=100;
             }
-            if(iErrCount[Addr]>5)
+            if(iErrCount[Addr]>5)                                           //AI(ht172-binfix) 20260625: skip this unit instead of aborting the whole scan
             {
-                iRusStatus=0;
+                iRusStatus=4;                                               // flag this unit as display error
                 bHasError[Addr]=true;
                 iErrCount[Addr]=0;
-                Task=9999;
+                Addr++;                                                     // advance so one dead/slow unit never blocks the rest
+                iFuncNum=0;
+                Task=50;
             }
             break;
         case 9999:
@@ -1876,7 +1878,14 @@ bool TMyBinDispCtrl::DoStartSetBinTFT()
             else if(BinDisDelay.Off())
             {
                 iErrCount[iDisplayIndex]++;
+                if(iErrCount[iDisplayIndex]>5)                                  //AI(ht172-binfix) 20260623: flag this unit as display error
+                {
+                    iRusStatus=4;
+                    bHasError[iDisplayIndex]=true;
+                }
+                Addr++;                                                         //AI(ht172-binfix) 20260623: advance on timeout so one dead unit (Auto1) never blocks the rest
                 Task=100;
+                break;
             }
 
             if(Addr>=eAuto20+1)                                            //JerryYang 20230515 : 避免超出陣列
