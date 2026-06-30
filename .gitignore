@@ -1,0 +1,2 @@
+# CodeGraph local index (SQLite DB, daemon pid, sockets, logs) — per-machine, never commit.
+.codegraph/
