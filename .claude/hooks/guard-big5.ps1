@@ -27,7 +27,14 @@ function Allow { exit 0 }
 
 try {
     # ---- Read and parse the hook payload from STDIN -------------------------
-    $raw = [Console]::In.ReadToEnd()
+    # Decode STDIN as UTF-8 explicitly. Claude Code writes the payload as UTF-8;
+    # relying on [Console]::In would use the console code page (e.g. cp950 on
+    # zh-TW Windows) and could mis-decode a file path containing non-ASCII
+    # characters (e.g. a project dir with Chinese), silently failing open.
+    # A UTF-8 StreamReader makes the guard locale-independent.
+    $stdinReader = New-Object System.IO.StreamReader([Console]::OpenStandardInput(), [System.Text.Encoding]::UTF8)
+    $raw = $stdinReader.ReadToEnd()
+    $stdinReader.Dispose()
     if ([string]::IsNullOrWhiteSpace($raw)) { Allow }
 
     try {
